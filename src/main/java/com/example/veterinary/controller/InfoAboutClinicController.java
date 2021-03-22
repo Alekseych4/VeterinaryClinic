@@ -21,19 +21,17 @@ public class InfoAboutClinicController {
         return infoService.getAllInfo(userType);
     }
 
-    @PostMapping("/{info}")
-    //TODO: Test this before push
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "No permission for this data")
-    public void createInfoItem(@PathVariable("info") String info){
+    @PostMapping("/edit")
+    public void createInfoItem(@RequestParam("info") String info){
         infoService.createInfoItem(info);
     }
 
-    @PatchMapping
+    @PutMapping("/edit")
     public InfoAboutClinicDto updateInfoItem(@RequestBody InfoAboutClinicDto aboutClinicDto){
         return infoService.updateInfoItem(aboutClinicDto);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/edit")
     public void deleteAllInfo(@RequestParam("id") String id){
         infoService.deleteInfoItem(id);
     }
