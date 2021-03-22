@@ -2,7 +2,6 @@ package com.example.veterinary.service.impl;
 
 import com.example.veterinary.dto.InfoAboutClinicDto;
 import com.example.veterinary.service.InfoAboutClinicService;
-import com.example.veterinary.service.UserType;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
