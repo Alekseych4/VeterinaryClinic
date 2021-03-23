@@ -11,7 +11,7 @@ import java.util.List;
 
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @RestController
-@RequestMapping("/schedule")
+@RequestMapping("/schedules")
 public class SpecialistsScheduleController {
 
     private final SpecialistsScheduleService scheduleService;
