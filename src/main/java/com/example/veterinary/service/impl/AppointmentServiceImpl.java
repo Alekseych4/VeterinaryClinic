@@ -1,7 +1,7 @@
 package com.example.veterinary.service.impl;
 
-import com.example.veterinary.dto.AppointmentDto;
-import com.example.veterinary.dto.AppointmentNoIdDto;
+import com.example.veterinary.dto.appointment.AppointmentDto;
+import com.example.veterinary.dto.appointment.AppointmentNoIdDto;
 import com.example.veterinary.service.AppointmentService;
 import org.springframework.stereotype.Service;
 

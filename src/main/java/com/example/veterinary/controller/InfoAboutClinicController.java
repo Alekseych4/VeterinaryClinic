@@ -1,11 +1,17 @@
 package com.example.veterinary.controller;
 
-import com.example.veterinary.dto.InfoAboutClinicDto;
+import com.example.veterinary.dto.info.InfoAboutClinicDto;
 import com.example.veterinary.service.InfoAboutClinicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -21,17 +27,17 @@ public class InfoAboutClinicController {
         return infoService.getAllInfo(userType);
     }
 
-    @PostMapping("/edit")
+    @PostMapping
     public void createInfoItem(@RequestParam("info") String info){
         infoService.createInfoItem(info);
     }
 
-    @PutMapping("/edit")
+    @PutMapping
     public InfoAboutClinicDto updateInfoItem(@RequestBody InfoAboutClinicDto aboutClinicDto){
         return infoService.updateInfoItem(aboutClinicDto);
     }
 
-    @DeleteMapping("/edit")
+    @DeleteMapping
     public void deleteAllInfo(@RequestParam("id") String id){
         infoService.deleteInfoItem(id);
     }

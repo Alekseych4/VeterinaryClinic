@@ -1,4 +1,4 @@
-package com.example.veterinary.dto;
+package com.example.veterinary.dto.appointment;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

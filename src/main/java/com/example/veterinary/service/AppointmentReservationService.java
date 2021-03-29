@@ -1,6 +1,6 @@
 package com.example.veterinary.service;
 
-import com.example.veterinary.dto.AppointmentReservationDto;
+import com.example.veterinary.dto.appointment.AppointmentReservationDto;
 
 import java.util.List;
 

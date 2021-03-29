@@ -1,7 +1,7 @@
 package com.example.veterinary.service;
 
-import com.example.veterinary.dto.SpecialistsScheduleDto;
-import com.example.veterinary.dto.SpecialistsScheduleNoIdDto;
+import com.example.veterinary.dto.schedule.SpecialistsScheduleDto;
+import com.example.veterinary.dto.schedule.SpecialistsScheduleNoIdDto;
 
 import java.util.List;
 

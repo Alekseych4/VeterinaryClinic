@@ -1,16 +1,16 @@
 package com.example.veterinary.dto.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Builder
 @Setter
 @Getter
-@AllArgsConstructor
-public class LoggedClientDto {
+public class LoggedClientDto extends LoggedClientNoIdDto {
+
     private String id;
-    private String name;
-    private String surname;
+
+    public LoggedClientDto(String id, String name, String surname) {
+        super(name, surname);
+        this.id = id;
+    }
 }

@@ -1,6 +1,6 @@
 package com.example.veterinary.service;
 
-import com.example.veterinary.dto.InfoAboutClinicDto;
+import com.example.veterinary.dto.info.InfoAboutClinicDto;
 
 import java.util.List;
 

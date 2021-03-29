@@ -1,10 +1,17 @@
 package com.example.veterinary.controller;
 
-import com.example.veterinary.dto.AppointmentReservationDto;
+import com.example.veterinary.dto.appointment.AppointmentReservationDto;
 import com.example.veterinary.service.AppointmentReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -24,12 +31,12 @@ public class AppointmentReservationController {
         return reservationService.create(userId, appointmentId);
     }
 
-    @PutMapping("/edit")
+    @PutMapping
     public AppointmentReservationDto update(@RequestBody AppointmentReservationDto appointmentReservationDto){
         return reservationService.update(appointmentReservationDto);
     }
 
-    @DeleteMapping("/edit")
+    @DeleteMapping
     public void delete(@RequestParam("id") String id){
         reservationService.delete(id);
     }

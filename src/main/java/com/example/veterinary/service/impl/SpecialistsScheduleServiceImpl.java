@@ -1,7 +1,7 @@
 package com.example.veterinary.service.impl;
 
-import com.example.veterinary.dto.SpecialistsScheduleDto;
-import com.example.veterinary.dto.SpecialistsScheduleNoIdDto;
+import com.example.veterinary.dto.schedule.SpecialistsScheduleDto;
+import com.example.veterinary.dto.schedule.SpecialistsScheduleNoIdDto;
 import com.example.veterinary.service.SpecialistsScheduleService;
 import org.springframework.stereotype.Service;
 
@@ -12,24 +12,14 @@ import java.util.List;
 public class SpecialistsScheduleServiceImpl implements SpecialistsScheduleService {
     @Override
     public List<SpecialistsScheduleDto> getAllSchedule() {
-        return Arrays.asList(SpecialistsScheduleDto.builder()
-                .id(generateId())
-                .specialistName("name")
-                .specialistPosition("doctor")
-                .timeStart("10:00")
-                .description("Treat animals")
-                .build());
+        return Arrays.asList(new SpecialistsScheduleDto("5", "10:00", "name",
+                "doctor", "Treat animals"));
     }
 
     @Override
     public SpecialistsScheduleDto createScheduleItem(SpecialistsScheduleNoIdDto scheduleNoIdDto) {
-        return SpecialistsScheduleDto.builder()
-                .id(generateId())
-                .specialistName(scheduleNoIdDto.getSpecialistName())
-                .specialistPosition(scheduleNoIdDto.getSpecialistPosition())
-                .timeStart(scheduleNoIdDto.getTimeStart())
-                .description(scheduleNoIdDto.getDescription())
-                .build();
+        return new SpecialistsScheduleDto(generateId(), scheduleNoIdDto.getTimeStart(), scheduleNoIdDto.getSpecialistName(),
+                scheduleNoIdDto.getSpecialistPosition(), scheduleNoIdDto.getDescription());
     }
 
     @Override
