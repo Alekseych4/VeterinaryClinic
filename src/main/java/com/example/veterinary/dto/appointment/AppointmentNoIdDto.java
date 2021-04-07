@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class AppointmentNoIdDto {
-    String timeStart;
-    String medicalStaffId;
-    String description;
+    private String timeStart;
+    private String medicalStaffId;
+    private String description;
 }

@@ -1,5 +1,7 @@
 package com.example.veterinary.controller;
 
+import com.example.veterinary.dto.patient.PatientCardDto;
+import com.example.veterinary.dto.patient.PatientCardNoIdDto;
 import com.example.veterinary.dto.user.LoggedClientDto;
 import com.example.veterinary.dto.user.LoggedClientNoIdDto;
 import com.example.veterinary.service.ClientSignUpService;
@@ -19,5 +21,10 @@ public class ClientSignUpController {
     @PostMapping
     public LoggedClientDto createUser(@RequestBody LoggedClientNoIdDto loggedClientDto){
         return clientSignUpService.createUser(loggedClientDto);
+    }
+
+    @PostMapping(value = "/card")
+    public PatientCardDto createPatientCard(@RequestBody PatientCardNoIdDto patientCardNoIdDto){
+        return clientSignUpService.createPatientCard(patientCardNoIdDto);
     }
 }

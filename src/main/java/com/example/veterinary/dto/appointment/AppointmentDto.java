@@ -7,10 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AppointmentDto extends AppointmentNoIdDto{
-    String id;
-    String timeStart;
-    String medicalStaffId;
-    String description;
+    private String id;
+    private String timeStart;
+    private String medicalStaffId;
+    private String description;
 
     public AppointmentDto(String id, String timeStart, String medicalStaffId, String description) {
         super(timeStart, medicalStaffId, description);

@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class AppointmentReservationDto {
-    String id;
-    String appointmentId;
-    String userId;
+    private String id;
+    private String appointmentId;
+    private String userId;
 }
