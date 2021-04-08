@@ -1,6 +1,6 @@
-package com.example.veterinary.entity;
+package com.example.veterinary.domain.entity;
 
-import com.example.veterinary.dto.user.UserType;
+import com.example.veterinary.domain.dto.user.UserType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-public class Staff {
+public class Client {
     @Id
     private UUID id = UUID.randomUUID();
     @Column(name = "user_type", nullable = false)
@@ -23,19 +23,13 @@ public class Staff {
     private String name;
     @Column(name = "surname", nullable = false)
     private String surname;
-    @Column(name = "position", nullable = false)
-    private String position;
-    @Column(name = "experience", nullable = false)
-    private String experience;
 
-    public Staff(UserType userType, String name, String surname, String position, String experience) {
+    public Client(UserType userType, String name, String surname) {
         this.userType = userType;
         this.name = name;
         this.surname = surname;
-        this.position = position;
-        this.experience = experience;
     }
 
-    protected Staff() {
+    protected Client() {
     }
 }

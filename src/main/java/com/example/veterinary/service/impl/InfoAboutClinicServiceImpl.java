@@ -1,6 +1,6 @@
 package com.example.veterinary.service.impl;
 
-import com.example.veterinary.dto.info.InfoAboutClinicDto;
+import com.example.veterinary.domain.dto.info.InfoAboutClinicDto;
 import com.example.veterinary.service.InfoAboutClinicService;
 import org.springframework.stereotype.Service;
 

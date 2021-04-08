@@ -1,4 +1,4 @@
-package com.example.veterinary.entity;
+package com.example.veterinary.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;

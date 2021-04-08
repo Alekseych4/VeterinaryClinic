@@ -1,4 +1,4 @@
-package com.example.veterinary.dto.user;
+package com.example.veterinary.domain.dto.user;
 
 import lombok.Getter;
 import lombok.Setter;

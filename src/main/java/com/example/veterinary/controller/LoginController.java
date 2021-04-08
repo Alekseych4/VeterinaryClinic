@@ -1,6 +1,6 @@
 package com.example.veterinary.controller;
 
-import com.example.veterinary.dto.login.UserCredentialsDto;
+import com.example.veterinary.domain.dto.login.UserCredentialsDto;
 import com.example.veterinary.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

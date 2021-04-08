@@ -1,4 +1,4 @@
-package com.example.veterinary.dto.user;
+package com.example.veterinary.domain.dto.user;
 
 public enum UserType {
     ADMIN,

@@ -1,4 +1,4 @@
-package com.example.veterinary.dto.schedule;
+package com.example.veterinary.domain.dto.schedule;
 
 import lombok.Getter;
 import lombok.Setter;

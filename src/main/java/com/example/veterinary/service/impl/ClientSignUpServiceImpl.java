@@ -1,9 +1,9 @@
 package com.example.veterinary.service.impl;
 
-import com.example.veterinary.dto.patient.PatientCardDto;
-import com.example.veterinary.dto.patient.PatientCardNoIdDto;
-import com.example.veterinary.dto.user.LoggedClientDto;
-import com.example.veterinary.dto.user.LoggedClientNoIdDto;
+import com.example.veterinary.domain.dto.patient.PatientCardDto;
+import com.example.veterinary.domain.dto.patient.PatientCardNoIdDto;
+import com.example.veterinary.domain.dto.user.LoggedClientDto;
+import com.example.veterinary.domain.dto.user.LoggedClientNoIdDto;
 import com.example.veterinary.service.ClientSignUpService;
 import org.springframework.stereotype.Service;
 

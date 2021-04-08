@@ -1,7 +1,7 @@
 package com.example.veterinary.controller;
 
-import com.example.veterinary.dto.appointment.AppointmentDto;
-import com.example.veterinary.dto.appointment.AppointmentNoIdDto;
+import com.example.veterinary.domain.dto.appointment.AppointmentDto;
+import com.example.veterinary.domain.dto.appointment.AppointmentNoIdDto;
 import com.example.veterinary.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

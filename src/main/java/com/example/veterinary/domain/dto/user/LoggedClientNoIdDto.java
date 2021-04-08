@@ -1,8 +1,7 @@
-package com.example.veterinary.dto.user;
+package com.example.veterinary.domain.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter

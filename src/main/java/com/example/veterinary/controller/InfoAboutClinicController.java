@@ -1,6 +1,6 @@
 package com.example.veterinary.controller;
 
-import com.example.veterinary.dto.info.InfoAboutClinicDto;
+import com.example.veterinary.domain.dto.info.InfoAboutClinicDto;
 import com.example.veterinary.service.InfoAboutClinicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

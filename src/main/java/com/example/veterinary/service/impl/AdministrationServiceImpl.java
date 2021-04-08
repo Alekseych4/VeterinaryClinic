@@ -1,7 +1,7 @@
 package com.example.veterinary.service.impl;
 
-import com.example.veterinary.dto.user.ClinicStaffDto;
-import com.example.veterinary.dto.user.ClinicStaffNoIdDto;
+import com.example.veterinary.domain.dto.user.ClinicStaffDto;
+import com.example.veterinary.domain.dto.user.ClinicStaffNoIdDto;
 import com.example.veterinary.service.AdministrationService;
 import org.springframework.stereotype.Service;
 

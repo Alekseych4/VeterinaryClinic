@@ -1,4 +1,4 @@
-package com.example.veterinary.dto.login;
+package com.example.veterinary.domain.dto.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

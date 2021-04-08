@@ -1,7 +1,7 @@
 package com.example.veterinary.controller;
 
-import com.example.veterinary.dto.schedule.SpecialistsScheduleDto;
-import com.example.veterinary.dto.schedule.SpecialistsScheduleNoIdDto;
+import com.example.veterinary.domain.dto.schedule.SpecialistsScheduleDto;
+import com.example.veterinary.domain.dto.schedule.SpecialistsScheduleNoIdDto;
 import com.example.veterinary.service.SpecialistsScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

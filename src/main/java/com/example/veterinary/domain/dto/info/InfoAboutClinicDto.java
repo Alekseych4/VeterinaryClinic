@@ -1,4 +1,4 @@
-package com.example.veterinary.dto.info;
+package com.example.veterinary.domain.dto.info;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
