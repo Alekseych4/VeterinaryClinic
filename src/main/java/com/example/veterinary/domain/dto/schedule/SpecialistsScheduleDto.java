@@ -7,10 +7,6 @@ import lombok.Setter;
 @Setter
 public class SpecialistsScheduleDto extends SpecialistsScheduleNoIdDto{
     private String id;
-    private String timeStart;
-    private String specialistName;
-    private String specialistPosition;
-    private String description;
 
     public SpecialistsScheduleDto(String id, String timeStart, String specialistName, String specialistPosition, String description) {
         super(timeStart, specialistName, specialistPosition, description);

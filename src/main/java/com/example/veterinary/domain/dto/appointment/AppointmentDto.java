@@ -7,9 +7,6 @@ import lombok.Setter;
 @Setter
 public class AppointmentDto extends AppointmentNoIdDto{
     private String id;
-    private String timeStart;
-    private String medicalStaffId;
-    private String description;
 
     public AppointmentDto(String id, String timeStart, String medicalStaffId, String description) {
         super(timeStart, medicalStaffId, description);
