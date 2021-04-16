@@ -1,20 +1,18 @@
 package com.example.veterinary.service;
 
 import com.example.veterinary.domain.dto.info.InfoAboutClinicDto;
+import com.example.veterinary.domain.dto.info.InfoAboutClinicNoIdDto;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface InfoAboutClinicService {
-    /**
-     *
-     * @param userType this param is just a reminder to make access to certain operations dependent on type of user
-     * @return
-     */
-    List<InfoAboutClinicDto> getAllInfo(String userType);
 
-    void createInfoItem(String info);
+    List<InfoAboutClinicDto> getAllInfo();
+
+    void createInfoItem(InfoAboutClinicNoIdDto info);
 
     InfoAboutClinicDto updateInfoItem(InfoAboutClinicDto infoAboutClinicDto);
 
-    void deleteInfoItem(String id);
+    void deleteInfoItem(UUID id);
 }

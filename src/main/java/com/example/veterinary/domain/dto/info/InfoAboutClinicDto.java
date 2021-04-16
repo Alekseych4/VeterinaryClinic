@@ -1,15 +1,18 @@
 package com.example.veterinary.domain.dto.info;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Builder;
+
+import java.util.UUID;
 
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
-public class InfoAboutClinicDto {
-    private String id;
-    private String info;
+public class InfoAboutClinicDto extends InfoAboutClinicNoIdDto{
+    private UUID id;
+//    private String info;
+
+    public InfoAboutClinicDto(UUID id, String info) {
+        super(info);
+        this.id = id;
+    }
 }

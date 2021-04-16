@@ -1,6 +1,7 @@
 package com.example.veterinary.controller;
 
 import com.example.veterinary.domain.dto.info.InfoAboutClinicDto;
+import com.example.veterinary.domain.dto.info.InfoAboutClinicNoIdDto;
 import com.example.veterinary.service.InfoAboutClinicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -23,12 +25,12 @@ public class InfoAboutClinicController {
     private final InfoAboutClinicService infoService;
 
     @GetMapping
-    public List<InfoAboutClinicDto> getAllInfo(@RequestParam("userType") String userType){
-        return infoService.getAllInfo(userType);
+    public List<InfoAboutClinicDto> getAllInfo(){
+        return infoService.getAllInfo();
     }
 
     @PostMapping
-    public void createInfoItem(@RequestParam("info") String info){
+    public void createInfoItem(@RequestBody InfoAboutClinicNoIdDto info){
         infoService.createInfoItem(info);
     }
 
@@ -38,7 +40,7 @@ public class InfoAboutClinicController {
     }
 
     @DeleteMapping
-    public void deleteAllInfo(@RequestParam("id") String id){
+    public void deleteInfoItem(@RequestParam("id") UUID id){
         infoService.deleteInfoItem(id);
     }
 }
