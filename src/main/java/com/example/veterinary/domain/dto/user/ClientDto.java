@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class LoggedClientDto extends LoggedClientNoIdDto {
+public class ClientDto extends ClientNoIdDto {
 
     private String id;
 
-    public LoggedClientDto(String id, String name, String surname) {
+    public ClientDto(String id, String name, String surname) {
         super(name, surname);
         this.id = id;
     }

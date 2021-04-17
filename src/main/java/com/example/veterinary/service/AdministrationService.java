@@ -1,10 +1,10 @@
 package com.example.veterinary.service;
 
-import com.example.veterinary.domain.dto.user.ClinicStaffDto;
-import com.example.veterinary.domain.dto.user.ClinicStaffNoIdDto;
+import com.example.veterinary.domain.dto.user.StaffDto;
+import com.example.veterinary.domain.dto.user.StaffNoIdDto;
 
 public interface AdministrationService {
-    ClinicStaffDto createEmployee(ClinicStaffNoIdDto clinicStaffNoIdDto);
+    StaffDto createEmployee(StaffNoIdDto staffNoIdDto);
 
     void deleteEmployee(String id);
 }

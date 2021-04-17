@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class ClinicStaffDto extends ClinicStaffNoIdDto {
+public class StaffDto extends StaffNoIdDto {
     private String id;
     private UserType userType;
     private String name;
@@ -13,7 +13,7 @@ public class ClinicStaffDto extends ClinicStaffNoIdDto {
     private String position;
     private String experience;
 
-    public ClinicStaffDto(String id, UserType userType, String name, String surname, String position, String experience) {
+    public StaffDto(String id, UserType userType, String name, String surname, String position, String experience) {
         super(userType, name, surname, position, experience);
         this.id = id;
     }

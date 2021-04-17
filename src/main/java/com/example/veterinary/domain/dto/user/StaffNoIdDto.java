@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 
-public class ClinicStaffNoIdDto {
+public class StaffNoIdDto {
     private UserType userType;
     private String name;
     private String surname;

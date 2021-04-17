@@ -2,8 +2,8 @@ package com.example.veterinary.service.impl;
 
 import com.example.veterinary.domain.dto.patient.PatientCardDto;
 import com.example.veterinary.domain.dto.patient.PatientCardNoIdDto;
-import com.example.veterinary.domain.dto.user.LoggedClientDto;
-import com.example.veterinary.domain.dto.user.LoggedClientNoIdDto;
+import com.example.veterinary.domain.dto.user.ClientDto;
+import com.example.veterinary.domain.dto.user.ClientNoIdDto;
 import com.example.veterinary.service.ClientSignUpService;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 public class ClientSignUpServiceImpl implements ClientSignUpService {
 
     @Override
-    public LoggedClientDto createUser(LoggedClientNoIdDto clientDto) {
-        return new LoggedClientDto(generateId(), clientDto.getName(), clientDto.getSurname());
+    public ClientDto createUser(ClientNoIdDto clientDto) {
+        return new ClientDto(generateId(), clientDto.getName(), clientDto.getSurname());
     }
 
     @Override
