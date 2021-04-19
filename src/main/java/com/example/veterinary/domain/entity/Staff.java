@@ -13,9 +13,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-public class Staff {
-    @Id
-    private UUID id = UUID.randomUUID();
+public class Staff extends EntityBase{
+
     @Column(name = "user_type", nullable = false)
     @Enumerated
     private UserType userType;

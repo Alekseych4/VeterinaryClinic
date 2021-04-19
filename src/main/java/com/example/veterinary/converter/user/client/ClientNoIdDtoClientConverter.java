@@ -1,4 +1,4 @@
-package com.example.veterinary.converter.user;
+package com.example.veterinary.converter.user.client;
 
 import com.example.veterinary.domain.dto.user.ClientNoIdDto;
 import com.example.veterinary.domain.entity.Client;

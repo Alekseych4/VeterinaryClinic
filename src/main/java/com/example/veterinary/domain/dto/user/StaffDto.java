@@ -3,17 +3,14 @@ package com.example.veterinary.domain.dto.user;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Setter
 @Getter
 public class StaffDto extends StaffNoIdDto {
-    private String id;
-    private UserType userType;
-    private String name;
-    private String surname;
-    private String position;
-    private String experience;
+    private UUID id;
 
-    public StaffDto(String id, UserType userType, String name, String surname, String position, String experience) {
+    public StaffDto(UUID id, UserType userType, String name, String surname, String position, String experience) {
         super(userType, name, surname, position, experience);
         this.id = id;
     }
