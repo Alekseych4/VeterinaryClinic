@@ -1,4 +1,4 @@
-package com.example.veterinary.converter;
+package com.example.veterinary.converter.info;
 
 import com.example.veterinary.domain.dto.info.InfoAboutClinicDto;
 import com.example.veterinary.domain.entity.InfoAboutClinic;

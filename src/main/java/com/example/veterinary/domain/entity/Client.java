@@ -1,8 +1,11 @@
 package com.example.veterinary.domain.entity;
 
 import com.example.veterinary.domain.dto.user.UserType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,9 +15,12 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @Entity
 public class Client {
     @Id
+    @Column(columnDefinition = "BINARY(16)")
     private UUID id = UUID.randomUUID();
     @Column(name = "user_type", nullable = false)
     @Enumerated

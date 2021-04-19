@@ -5,8 +5,14 @@ import com.example.veterinary.domain.dto.patient.PatientCardNoIdDto;
 import com.example.veterinary.domain.dto.user.ClientDto;
 import com.example.veterinary.domain.dto.user.ClientNoIdDto;
 
-public interface ClientSignUpService {
-    ClientDto createUser(ClientNoIdDto clientDto);
+import java.util.UUID;
 
-    PatientCardDto createPatientCard(PatientCardNoIdDto patientCardNoIdDto);
+public interface ClientService {
+    ClientDto create(ClientNoIdDto clientDto);
+
+    ClientDto update(ClientDto clientDto);
+
+    ClientDto findById(UUID id);
+
+    void delete(UUID id);
 }

@@ -9,7 +9,6 @@ import java.util.UUID;
 @Setter
 public class InfoAboutClinicDto extends InfoAboutClinicNoIdDto{
     private UUID id;
-//    private String info;
 
     public InfoAboutClinicDto(UUID id, String info) {
         super(info);
