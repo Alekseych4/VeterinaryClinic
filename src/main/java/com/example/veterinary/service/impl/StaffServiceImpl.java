@@ -41,8 +41,8 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public StaffDto findByName(String name) {
-        //TODO: implement
-        return null;
+        Staff staff = staffRepository.findByName(name);
+        return conversionService.convert(staff, StaffDto.class);
     }
 
     @Override
