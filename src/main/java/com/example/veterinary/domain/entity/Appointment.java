@@ -6,30 +6,29 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-public class Appointment {
-    @Id
-    private UUID id = UUID.randomUUID();
-    @Column(name = "staff_id", nullable = false)
+public class Appointment extends EntityBase{
+
+    @Column(name = "staff_id", columnDefinition = "BINARY(16)")
     private UUID staffId;
-    @Column(name = "client_id")
+    @Column(name = "client_id", columnDefinition = "BINARY(16)")
     private UUID clientId;
     @Column(name = "time_start", nullable = false)
-    private Timestamp timeStart;
-    @Column(name = "time_end", nullable = false)
-    private Timestamp timeEnd;
+    private Date timeStart;
+    @Column(name = "duration", nullable = false)
+    private Date duration;
     @Column(name = "description")
     private String description;
 
-    public Appointment(UUID staffId, Timestamp timeStart, Timestamp timeEnd, String description) {
+    public Appointment(UUID staffId, Date timeStart, Date duration, String description) {
         this.staffId = staffId;
         this.timeStart = timeStart;
-        this.timeEnd = timeEnd;
+        this.duration = duration;
         this.description = description;
     }
 

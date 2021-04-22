@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -38,7 +39,7 @@ public class AppointmentController {
     }
 
     @DeleteMapping
-    public void delete(@RequestParam("id") String id){
+    public void delete(@RequestParam("id") UUID id){
         appointmentService.delete(id);
     }
 }
