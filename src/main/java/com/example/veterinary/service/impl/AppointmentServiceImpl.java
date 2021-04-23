@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -24,10 +25,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public List<AppointmentDto> getAll() {
-        List<AppointmentDto> result = new ArrayList<>();
 
-        appointmentRepository.findAll().forEach(item -> result.add(conversionService.convert(item, AppointmentDto.class)));
-        return result;
+        return appointmentRepository.findAll()
+                .stream()
+                .map(item -> conversionService.convert(item, AppointmentDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override

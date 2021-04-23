@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -25,14 +26,10 @@ public class InfoAboutClinicServiceImpl implements InfoAboutClinicService {
 
     @Override
     public List<InfoAboutClinicDto> getAllInfo() {
-        List<InfoAboutClinic> infoList = infoAboutClinicRepository.findAll();
-        List<InfoAboutClinicDto> infoListDto = new ArrayList<>();
-
-        infoList.forEach(item -> {
-            infoListDto.add(conversionService.convert(item, InfoAboutClinicDto.class));
-        });
-
-        return infoListDto;
+        return infoAboutClinicRepository.findAll()
+                .stream()
+                .map(item -> conversionService.convert(item, InfoAboutClinicDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
