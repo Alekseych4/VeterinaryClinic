@@ -10,8 +10,8 @@ import java.util.UUID;
 public class InfoAboutClinicDto extends InfoAboutClinicNoIdDto{
     private UUID id;
 
-    public InfoAboutClinicDto(UUID id, String info) {
-        super(info);
+    public InfoAboutClinicDto(UUID id, String info, long publicationDate) {
+        super(info, publicationDate);
         this.id = id;
     }
 }

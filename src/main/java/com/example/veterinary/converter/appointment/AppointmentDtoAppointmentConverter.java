@@ -10,7 +10,7 @@ public class AppointmentDtoAppointmentConverter implements Converter<Appointment
     @Override
     public Appointment convert(AppointmentDto source) {
         Appointment appointment = new Appointment(source.getMedicalStaffId(), new Date(source.getTimeStart()),
-                new Date(source.getDuration()), source.getDescription());
+                source.getDuration(), source.getDescription());
         appointment.setId(source.getId());
         return appointment;
     }

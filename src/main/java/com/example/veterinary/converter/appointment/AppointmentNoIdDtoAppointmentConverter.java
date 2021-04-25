@@ -11,7 +11,7 @@ import java.util.Date;
 public class AppointmentNoIdDtoAppointmentConverter implements Converter<AppointmentNoIdDto, Appointment> {
     @Override
     public Appointment convert(AppointmentNoIdDto source) {
-        return new Appointment(source.getMedicalStaffId(), new Date(source.getTimeStart()), new Date(source.getDuration()),
+        return new Appointment(source.getMedicalStaffId(), new Date(source.getTimeStart()), source.getDuration(),
                 source.getDescription());
     }
 }

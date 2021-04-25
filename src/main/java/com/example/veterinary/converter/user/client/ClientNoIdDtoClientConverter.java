@@ -11,11 +11,6 @@ import java.util.UUID;
 public class ClientNoIdDtoClientConverter implements Converter<ClientNoIdDto, Client> {
     @Override
     public Client convert(ClientNoIdDto source) {
-        return Client.builder()
-                .id(UUID.randomUUID())
-                .name(source.getName())
-                .surname(source.getSurname())
-                .userType(source.getUserType())
-                .build();
+        return new Client(source.getUserType(), source.getName(), source.getSurname());
     }
 }

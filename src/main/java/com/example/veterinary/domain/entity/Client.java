@@ -18,10 +18,8 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @Entity
-public class Client {
-    @Id
-    @Column(columnDefinition = "BINARY(16)")
-    private UUID id = UUID.randomUUID();
+public class Client extends EntityBase{
+
     @Column(name = "user_type", nullable = false)
     @Enumerated
     private UserType userType;
@@ -30,7 +28,8 @@ public class Client {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    public Client(UserType userType, String name, String surname) {
+    public Client(UUID id, UserType userType, String name, String surname) {
+        super(id);
         this.userType = userType;
         this.name = name;
         this.surname = surname;

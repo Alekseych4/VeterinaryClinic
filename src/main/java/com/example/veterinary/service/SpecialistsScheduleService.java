@@ -1,16 +1,16 @@
 package com.example.veterinary.service;
 
-import com.example.veterinary.domain.dto.schedule.SpecialistsScheduleDto;
-import com.example.veterinary.domain.dto.schedule.SpecialistsScheduleNoIdDto;
+import com.example.veterinary.domain.dto.schedule.ScheduleDto;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface SpecialistsScheduleService {
-    List<SpecialistsScheduleDto> getAllSchedule();
+    List<ScheduleDto> getAllSchedule();
 
-    SpecialistsScheduleDto createScheduleItem(SpecialistsScheduleNoIdDto scheduleNoIdDto);
+    ScheduleDto createScheduleItem(ScheduleDto scheduleDto);
 
-    SpecialistsScheduleDto updateScheduleItem(SpecialistsScheduleDto specialistsScheduleDto);
+    ScheduleDto updateScheduleItem(ScheduleDto scheduleDto);
 
-    void deleteScheduleItem(String id);
+    void deleteScheduleItem(UUID id);
 }

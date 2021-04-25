@@ -1,7 +1,6 @@
 package com.example.veterinary.controller;
 
-import com.example.veterinary.domain.dto.schedule.SpecialistsScheduleDto;
-import com.example.veterinary.domain.dto.schedule.SpecialistsScheduleNoIdDto;
+import com.example.veterinary.domain.dto.schedule.ScheduleDto;
 import com.example.veterinary.service.SpecialistsScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,31 +15,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @RestController
 @RequestMapping("/schedules")
-public class SpecialistsScheduleController {
+public class ScheduleController {
 
     private final SpecialistsScheduleService scheduleService;
 
     @GetMapping
-    public List<SpecialistsScheduleDto> getAllSchedule(){
+    public List<ScheduleDto> getAllSchedule(){
         return scheduleService.getAllSchedule();
     }
 
     @PostMapping
-    public SpecialistsScheduleDto createScheduleItem(@RequestBody SpecialistsScheduleNoIdDto scheduleNoIdDto){
-        return scheduleService.createScheduleItem(scheduleNoIdDto);
+    public ScheduleDto createScheduleItem(@RequestBody ScheduleDto scheduleDto){
+        return scheduleService.createScheduleItem(scheduleDto);
     }
 
     @PutMapping
-    public SpecialistsScheduleDto updateScheduleItem(@RequestBody SpecialistsScheduleDto specialistsScheduleDto){
-        return scheduleService.updateScheduleItem(specialistsScheduleDto);
+    public ScheduleDto updateScheduleItem(@RequestBody ScheduleDto scheduleDto){
+        return scheduleService.updateScheduleItem(scheduleDto);
     }
 
     @DeleteMapping
-    public void deleteScheduleItem(@RequestParam("id") String id){
+    public void deleteScheduleItem(@RequestParam("id") UUID id){
         scheduleService.deleteScheduleItem(id);
     }
 }

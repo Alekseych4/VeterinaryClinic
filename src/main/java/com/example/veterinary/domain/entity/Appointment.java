@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,11 +21,11 @@ public class Appointment extends EntityBase{
     @Column(name = "time_start", nullable = false)
     private Date timeStart;
     @Column(name = "duration", nullable = false)
-    private Date duration;
+    private long duration;
     @Column(name = "description")
     private String description;
 
-    public Appointment(UUID staffId, Date timeStart, Date duration, String description) {
+    public Appointment(UUID staffId, Date timeStart, long duration, String description) {
         this.staffId = staffId;
         this.timeStart = timeStart;
         this.duration = duration;

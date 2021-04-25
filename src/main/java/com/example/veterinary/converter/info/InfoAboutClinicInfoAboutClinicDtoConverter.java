@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 public class InfoAboutClinicInfoAboutClinicDtoConverter implements Converter<InfoAboutClinic, InfoAboutClinicDto> {
     @Override
     public InfoAboutClinicDto convert(InfoAboutClinic source) {
-        return new InfoAboutClinicDto(source.getId(), source.getInfo());
+        return new InfoAboutClinicDto(source.getId(), source.getInfo(), source.getPublicationDate().getTime());
     }
 }

@@ -9,11 +9,6 @@ import org.springframework.stereotype.Component;
 public class ClientDtoClientConverter implements Converter<ClientDto, Client> {
     @Override
     public Client convert(ClientDto source) {
-        return Client.builder()
-                .id(source.getId())
-                .name(source.getName())
-                .surname(source.getSurname())
-                .userType(source.getUserType())
-                .build();
+        return new Client(source.getId(), source.getUserType(), source.getName(), source.getSurname());
     }
 }
