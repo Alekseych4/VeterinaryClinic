@@ -1,7 +1,5 @@
 package com.example.veterinary.controller;
 
-import com.example.veterinary.domain.dto.patient.PatientCardDto;
-import com.example.veterinary.domain.dto.patient.PatientCardNoIdDto;
 import com.example.veterinary.domain.dto.user.ClientDto;
 import com.example.veterinary.domain.dto.user.ClientNoIdDto;
 import com.example.veterinary.service.ClientService;

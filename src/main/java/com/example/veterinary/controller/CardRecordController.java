@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/card")
+@RequestMapping("/record")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class CardRecordController {
     private final CardRecordService cardRecordService;

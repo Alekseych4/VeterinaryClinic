@@ -11,10 +11,9 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-public class PatientCard {
-    @Id
-    private UUID id = UUID.randomUUID();
-    @Column(name = "client_id", nullable = false)
+public class PatientCard extends EntityBase{
+
+    @Column(name = "client_id", columnDefinition = "BINARY(16)")
     private UUID clientId;
     @Column(name = "age")
     private int age;

@@ -4,13 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @AllArgsConstructor
 public class PatientCardNoIdDto {
-    private String clientId;
-    private String age;
+    private UUID clientId;
+    private int age;
     private String name;
-    private String weight;
+    private double weight;
     private String animalType;
 }

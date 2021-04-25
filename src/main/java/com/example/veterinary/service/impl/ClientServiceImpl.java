@@ -1,7 +1,5 @@
 package com.example.veterinary.service.impl;
 
-import com.example.veterinary.domain.dto.patient.PatientCardDto;
-import com.example.veterinary.domain.dto.patient.PatientCardNoIdDto;
 import com.example.veterinary.domain.dto.user.ClientDto;
 import com.example.veterinary.domain.dto.user.ClientNoIdDto;
 import com.example.veterinary.domain.entity.Client;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

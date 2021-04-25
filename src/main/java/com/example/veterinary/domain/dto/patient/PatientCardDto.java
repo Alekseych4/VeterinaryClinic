@@ -3,17 +3,14 @@ package com.example.veterinary.domain.dto.patient;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 public class PatientCardDto extends PatientCardNoIdDto{
-    private String id;
-    private String clientId;
-    private String age;
-    private String name;
-    private String weight;
-    private String animalType;
+    private UUID id;
 
-    public PatientCardDto(String id, String clientId, String age, String name, String weight, String animalType) {
+    public PatientCardDto(UUID id, UUID clientId, int age, String name, double weight, String animalType) {
         super(clientId, age, name, weight, animalType);
         this.id = id;
     }
