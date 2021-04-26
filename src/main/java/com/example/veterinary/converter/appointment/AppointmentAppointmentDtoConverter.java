@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 public class AppointmentAppointmentDtoConverter implements Converter<Appointment, AppointmentDto> {
     @Override
     public AppointmentDto convert(Appointment source) {
-        return new AppointmentDto(source.getId(), source.getTimeStart().getTime(), source.getDuration(),
-                source.getStaffId(), source.getDescription());
+        return new AppointmentDto(source.getId(), source.getScheduleItemId(), source.getClientId());
     }
 }

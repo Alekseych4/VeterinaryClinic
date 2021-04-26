@@ -1,7 +1,6 @@
 package com.example.veterinary.controller;
 
 import com.example.veterinary.domain.dto.appointment.AppointmentDto;
-import com.example.veterinary.domain.dto.appointment.AppointmentNoIdDto;
 import com.example.veterinary.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +13,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import java.util.List;
 import java.util.UUID;
 
-@RestController
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@RestController
 @RequestMapping("/appointments")
 public class AppointmentController {
+
     private final AppointmentService appointmentService;
 
     @GetMapping
@@ -29,8 +30,8 @@ public class AppointmentController {
     }
 
     @PostMapping
-    public AppointmentDto create(@RequestBody AppointmentNoIdDto appointmentNoIdDto){
-        return appointmentService.create(appointmentNoIdDto);
+    public AppointmentDto create(@RequestBody AppointmentDto appointmentDto){
+        return appointmentService.create(appointmentDto);
     }
 
     @PutMapping
