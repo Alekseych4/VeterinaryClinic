@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class ScheduleItemScheduleItemDtoConverter implements Converter<ScheduleItem, ScheduleItemDto> {
     @Override
     public ScheduleItemDto convert(ScheduleItem source) {
-        return new ScheduleItemDto(source.getId(), source.getTimeStart().getTime(), source.getDuration(),
+        return new ScheduleItemDto(source.getId(), source.getTimeStart(), source.getDuration(),
                 source.getStaffId(), source.getDescription());
     }
 }

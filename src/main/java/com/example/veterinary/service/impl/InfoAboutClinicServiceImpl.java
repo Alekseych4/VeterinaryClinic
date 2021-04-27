@@ -1,7 +1,6 @@
 package com.example.veterinary.service.impl;
 
 import com.example.veterinary.domain.dto.info.InfoAboutClinicDto;
-import com.example.veterinary.domain.dto.info.InfoAboutClinicNoIdDto;
 import com.example.veterinary.domain.entity.InfoAboutClinic;
 import com.example.veterinary.repository.InfoAboutClinicRepository;
 import com.example.veterinary.service.InfoAboutClinicService;
@@ -11,8 +10,6 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -33,7 +30,7 @@ public class InfoAboutClinicServiceImpl implements InfoAboutClinicService {
     }
 
     @Override
-    public void createInfoItem(InfoAboutClinicNoIdDto infoNoIdDto) {
+    public void createInfoItem(InfoAboutClinicDto infoNoIdDto) {
         InfoAboutClinic infoAboutClinic = conversionService.convert(infoNoIdDto, InfoAboutClinic.class);
         infoAboutClinicRepository.save(infoAboutClinic);
     }

@@ -1,7 +1,6 @@
 package com.example.veterinary.controller;
 
 import com.example.veterinary.domain.dto.info.InfoAboutClinicDto;
-import com.example.veterinary.domain.dto.info.InfoAboutClinicNoIdDto;
 import com.example.veterinary.service.InfoAboutClinicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class InfoAboutClinicController {
     }
 
     @PostMapping
-    public void createInfoItem(@RequestBody InfoAboutClinicNoIdDto info){
+    public void createInfoItem(@RequestBody InfoAboutClinicDto info){
         infoService.createInfoItem(info);
     }
 

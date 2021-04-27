@@ -15,9 +15,4 @@ public class AppointmentDto {
     private UUID id;
     private UUID scheduleItemId;
     private UUID clientId;
-
-    public AppointmentDto(UUID scheduleItemId, UUID clientId) {
-        this.scheduleItemId = scheduleItemId;
-        this.clientId = clientId;
-    }
 }

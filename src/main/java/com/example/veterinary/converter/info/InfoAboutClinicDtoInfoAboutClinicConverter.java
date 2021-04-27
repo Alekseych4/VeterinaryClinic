@@ -11,8 +11,10 @@ import java.util.Date;
 public class InfoAboutClinicDtoInfoAboutClinicConverter implements Converter<InfoAboutClinicDto, InfoAboutClinic> {
     @Override
     public InfoAboutClinic convert(InfoAboutClinicDto source) {
-        InfoAboutClinic infoAboutClinic = new InfoAboutClinic(source.getInfo(), new Date(source.getPublicationDate()));
-        infoAboutClinic.setId(source.getId());
-        return infoAboutClinic;
+        if (source.getId() == null){
+            return new InfoAboutClinic(source.getPublicationDate(), source.getInfo());
+        }
+
+        return new InfoAboutClinic(source.getId(), source.getInfo(), source.getPublicationDate());
     }
 }

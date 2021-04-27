@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Getter
@@ -13,15 +14,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ScheduleItemDto {
     private UUID id;
-    private long timeStart;
+    private Date timeStart;
     private long duration;
     private UUID medicalStaffId;
     private String description;
-
-    public ScheduleItemDto(long timeStart, long duration, UUID medicalStaffId, String description) {
-        this.timeStart = timeStart;
-        this.duration = duration;
-        this.medicalStaffId = medicalStaffId;
-        this.description = description;
-    }
 }
