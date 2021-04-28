@@ -18,7 +18,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @Entity
-public class Client extends EntityBase{
+public class Client extends EntityBase {
 
     @Column(name = "user_type", nullable = false)
     @Enumerated

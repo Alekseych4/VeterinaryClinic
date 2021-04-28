@@ -1,5 +1,6 @@
 package com.example.veterinary.domain.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
 public class PatientCard extends EntityBase{
 
     @Column(name = "client_id", columnDefinition = "BINARY(16)")
@@ -24,7 +26,8 @@ public class PatientCard extends EntityBase{
     @Column(name = "animal_type")
     private String animalType;
 
-    public PatientCard(UUID clientId, int age, String name, double weight, String animalType) {
+    public PatientCard(UUID id, UUID clientId, int age, String name, double weight, String animalType) {
+        super(id);
         this.clientId = clientId;
         this.age = age;
         this.name = name;

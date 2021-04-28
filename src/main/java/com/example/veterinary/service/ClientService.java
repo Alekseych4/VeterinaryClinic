@@ -1,12 +1,11 @@
 package com.example.veterinary.service;
 
 import com.example.veterinary.domain.dto.user.ClientDto;
-import com.example.veterinary.domain.dto.user.ClientNoIdDto;
 
 import java.util.UUID;
 
 public interface ClientService {
-    ClientDto create(ClientNoIdDto clientDto);
+    ClientDto create(ClientDto clientDto);
 
     ClientDto update(ClientDto clientDto);
 

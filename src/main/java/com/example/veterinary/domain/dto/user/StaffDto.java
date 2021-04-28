@@ -1,17 +1,21 @@
 package com.example.veterinary.domain.dto.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.UUID;
 
 @Setter
 @Getter
-public class StaffDto extends StaffNoIdDto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class StaffDto {
     private UUID id;
-
-    public StaffDto(UUID id, UserType userType, String name, String surname, String position, String experience) {
-        super(userType, name, surname, position, experience);
-        this.id = id;
-    }
+    private UserType userType;
+    private String name;
+    private String surname;
+    private String position;
+    private String experience;
 }

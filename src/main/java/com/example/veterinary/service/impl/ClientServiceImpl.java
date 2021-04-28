@@ -1,7 +1,6 @@
 package com.example.veterinary.service.impl;
 
 import com.example.veterinary.domain.dto.user.ClientDto;
-import com.example.veterinary.domain.dto.user.ClientNoIdDto;
 import com.example.veterinary.domain.entity.Client;
 import com.example.veterinary.repository.ClientRepository;
 import com.example.veterinary.service.ClientService;
@@ -20,7 +19,7 @@ public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
 
     @Override
-    public ClientDto create(ClientNoIdDto clientDto) {
+    public ClientDto create(ClientDto clientDto) {
         Client client = conversionService.convert(clientDto, Client.class);
         Client res = clientRepository.save(client);
         return conversionService.convert(res, ClientDto.class);

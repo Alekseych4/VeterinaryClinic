@@ -9,7 +9,12 @@ import org.springframework.stereotype.Component;
 public class PatientCardDtoPatientCardConverter implements Converter<PatientCardDto, PatientCard> {
     @Override
     public PatientCard convert(PatientCardDto source) {
-        return new PatientCard(source.getClientId(), source.getAge(), source.getName(), source.getWeight(),
-                source.getAnimalType());
+        if (source.getId() == null){
+            return new PatientCard(source.getClientId(), source.getAge(), source.getName(), source.getWeight(),
+                    source.getAnimalType());
+        }
+
+        return new PatientCard(source.getId(), source.getClientId(), source.getAge(), source.getName(),
+                source.getWeight(), source.getAnimalType());
     }
 }

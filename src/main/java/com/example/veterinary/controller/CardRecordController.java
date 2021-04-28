@@ -1,7 +1,6 @@
 package com.example.veterinary.controller;
 
 import com.example.veterinary.domain.dto.patient.CardRecordDto;
-import com.example.veterinary.domain.dto.patient.CardRecordNoIdDto;
 import com.example.veterinary.service.CardRecordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,8 @@ public class CardRecordController {
     }
 
     @PostMapping
-    public CardRecordDto create(@RequestBody CardRecordNoIdDto cardRecordNoIdDto){
-        return cardRecordService.create(cardRecordNoIdDto);
+    public CardRecordDto create(@RequestBody CardRecordDto cardRecordDto){
+        return cardRecordService.create(cardRecordDto);
     }
 
     @PutMapping

@@ -1,7 +1,6 @@
 package com.example.veterinary.service.impl;
 
 import com.example.veterinary.domain.dto.patient.PatientCardDto;
-import com.example.veterinary.domain.dto.patient.PatientCardNoIdDto;
 import com.example.veterinary.domain.entity.PatientCard;
 import com.example.veterinary.repository.PatientCardRepository;
 import com.example.veterinary.service.PatientCardService;
@@ -25,8 +24,8 @@ public class PatientCardServiceImpl implements PatientCardService {
     }
 
     @Override
-    public PatientCardDto create(PatientCardNoIdDto patientCardNoIdDto) {
-        PatientCard patientCard = conversionService.convert(patientCardNoIdDto, PatientCard.class);
+    public PatientCardDto create(PatientCardDto patientCardDto) {
+        PatientCard patientCard = conversionService.convert(patientCardDto, PatientCard.class);
         PatientCard result = patientCardRepository.save(patientCard);
         return conversionService.convert(result, PatientCardDto.class);
     }

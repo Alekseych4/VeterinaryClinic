@@ -1,7 +1,6 @@
 package com.example.veterinary.service.impl;
 
 import com.example.veterinary.domain.dto.user.StaffDto;
-import com.example.veterinary.domain.dto.user.StaffNoIdDto;
 import com.example.veterinary.domain.entity.Staff;
 import com.example.veterinary.repository.StaffRepository;
 import com.example.veterinary.service.StaffService;
@@ -20,8 +19,8 @@ public class StaffServiceImpl implements StaffService {
     private final StaffRepository staffRepository;
 
     @Override
-    public StaffDto create(StaffNoIdDto staffNoIdDto) {
-        Staff staff = conversionService.convert(staffNoIdDto, Staff.class);
+    public StaffDto create(StaffDto staffDto) {
+        Staff staff = conversionService.convert(staffDto, Staff.class);
         Staff result = staffRepository.save(staff);
         return conversionService.convert(result, StaffDto.class);
     }
