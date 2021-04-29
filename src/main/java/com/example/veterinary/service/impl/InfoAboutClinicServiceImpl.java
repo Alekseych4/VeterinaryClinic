@@ -1,36 +1,50 @@
 package com.example.veterinary.service.impl;
 
 import com.example.veterinary.domain.dto.info.InfoAboutClinicDto;
+import com.example.veterinary.domain.entity.InfoAboutClinic;
+import com.example.veterinary.repository.InfoAboutClinicRepository;
 import com.example.veterinary.service.InfoAboutClinicService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class InfoAboutClinicServiceImpl implements InfoAboutClinicService {
+
+    private final InfoAboutClinicRepository infoAboutClinicRepository;
+    private final ConversionService conversionService;
+
     @Override
-    public List<InfoAboutClinicDto> getAllInfo(String userType) {
-        return Arrays.asList(InfoAboutClinicDto.builder().id("5").info("Test").build(),
-                InfoAboutClinicDto.builder().id("9").info("Test info 2").build());
+    public List<InfoAboutClinicDto> getAllInfo() {
+        return infoAboutClinicRepository.findAll()
+                .stream()
+                .map(item -> conversionService.convert(item, InfoAboutClinicDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void createInfoItem(String info) {
-        System.out.println(InfoAboutClinicDto.builder().id(generateId()).info(info).build().toString());
+    public void createInfoItem(InfoAboutClinicDto infoNoIdDto) {
+        InfoAboutClinic infoAboutClinic = conversionService.convert(infoNoIdDto, InfoAboutClinic.class);
+        infoAboutClinicRepository.save(infoAboutClinic);
     }
 
+    @Transactional
     @Override
     public InfoAboutClinicDto updateInfoItem(InfoAboutClinicDto infoAboutClinicDto) {
-        return infoAboutClinicDto;
+        InfoAboutClinic infoAboutClinic = conversionService.convert(infoAboutClinicDto, InfoAboutClinic.class);
+        InfoAboutClinic result = infoAboutClinicRepository.save(infoAboutClinic);
+        return conversionService.convert(result, InfoAboutClinicDto.class);
     }
 
     @Override
-    public void deleteInfoItem(String id) {
-
-    }
-
-    private String generateId(){
-        return "testId";
+    public void deleteInfoItem(UUID id) {
+        infoAboutClinicRepository.deleteById(id);
     }
 }

@@ -13,19 +13,18 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-public class Staff {
-    @Id
-    private UUID id = UUID.randomUUID();
-    @Column(name = "user_type", nullable = false)
+public class Staff extends EntityBase{
+
+    @Column(name = "user_type")
     @Enumerated
     private UserType userType;
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
-    @Column(name = "surname", nullable = false)
+    @Column(name = "surname")
     private String surname;
-    @Column(name = "position", nullable = false)
+    @Column(name = "position")
     private String position;
-    @Column(name = "experience", nullable = false)
+    @Column(name = "experience")
     private String experience;
 
     public Staff(UserType userType, String name, String surname, String position, String experience) {

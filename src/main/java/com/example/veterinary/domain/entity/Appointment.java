@@ -1,36 +1,25 @@
 package com.example.veterinary.domain.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.sql.Timestamp;
 import java.util.UUID;
 
+@Entity
 @Getter
 @Setter
-@Entity
-public class Appointment {
-    @Id
-    private UUID id = UUID.randomUUID();
-    @Column(name = "staff_id", nullable = false)
-    private UUID staffId;
-    @Column(name = "client_id")
-    private UUID clientId;
-    @Column(name = "time_start", nullable = false)
-    private Timestamp timeStart;
-    @Column(name = "time_end", nullable = false)
-    private Timestamp timeEnd;
-    @Column(name = "description")
-    private String description;
+@AllArgsConstructor
+public class Appointment extends EntityBase {
 
-    public Appointment(UUID staffId, Timestamp timeStart, Timestamp timeEnd, String description) {
-        this.staffId = staffId;
-        this.timeStart = timeStart;
-        this.timeEnd = timeEnd;
-        this.description = description;
+    private UUID scheduleItemId;
+    private UUID clientId;
+
+    public Appointment(UUID id, UUID scheduleItemId, UUID clientId) {
+        super(id);
+        this.scheduleItemId = scheduleItemId;
+        this.clientId = clientId;
     }
 
     protected Appointment(){}

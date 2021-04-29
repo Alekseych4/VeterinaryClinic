@@ -1,15 +1,21 @@
 package com.example.veterinary.domain.dto.patient;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
-public class PatientCardDto extends PatientCardNoIdDto{
-    private String id;
-
-    public PatientCardDto(String id, String clientId, String age, String name, String weight, String animalType) {
-        super(clientId, age, name, weight, animalType);
-        this.id = id;
-    }
+@AllArgsConstructor
+@NoArgsConstructor
+public class PatientCardDto {
+    private UUID id;
+    private UUID clientId;
+    private int age;
+    private String name;
+    private double weight;
+    private String animalType;
 }

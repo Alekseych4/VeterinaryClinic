@@ -1,15 +1,18 @@
 package com.example.veterinary.domain.dto.appointment;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
-public class AppointmentDto extends AppointmentNoIdDto{
-    private String id;
-
-    public AppointmentDto(String id, String timeStart, String medicalStaffId, String description) {
-        super(timeStart, medicalStaffId, description);
-        this.id = id;
-    }
+@AllArgsConstructor
+@NoArgsConstructor
+public class AppointmentDto {
+    private UUID id;
+    private UUID scheduleItemId;
+    private UUID clientId;
 }

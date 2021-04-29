@@ -2,14 +2,18 @@ package com.example.veterinary.domain.dto.info;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Builder;
+
+import java.util.Date;
+import java.util.UUID;
 
 @Getter
 @Setter
-@Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class InfoAboutClinicDto {
-    private String id;
+    private UUID id;
     private String info;
+    private Date publicationDate;
 }

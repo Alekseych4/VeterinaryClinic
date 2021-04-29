@@ -21,7 +21,7 @@ public class LoginController {
     }
 
 //    @GetMapping("/sign-up")
-//    public LoggedClientDto clientSignUp(){
+//    public ClientDto clientSignUp(){
 //        return
 //    }
 
