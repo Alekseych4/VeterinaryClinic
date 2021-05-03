@@ -16,6 +16,6 @@ public class ScheduleItemDto {
     private UUID id;
     private Date timeStart;
     private long duration;
-    private UUID medicalStaffId;
+    private UUID staffId;
     private String description;
 }

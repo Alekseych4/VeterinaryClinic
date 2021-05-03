@@ -12,11 +12,13 @@ public class ScheduleItemDtoScheduleItemConverter implements Converter<ScheduleI
     @Override
     public ScheduleItem convert(ScheduleItemDto source) {
         if (source.getId() == null){
-            return new ScheduleItem(source.getMedicalStaffId(), source.getTimeStart(), source.getDuration(),
-                    source.getDescription());
+            return ScheduleItem.builder()
+                    .timeStart(source.getTimeStart())
+                    .duration(source.getDuration())
+                    .description(source.getDescription())
+                    .build();
         }
 
-        return new ScheduleItem(source.getId(), source.getMedicalStaffId(), source.getTimeStart(),
-                source.getDuration(), source.getDescription());
+        return new ScheduleItem(source.getId(), source.getTimeStart(), source.getDuration(), source.getDescription());
     }
 }

@@ -1,22 +1,22 @@
 package com.example.veterinary.domain.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.UUID;
 
 @Getter
 @Setter
-@Entity
+@Builder
 @AllArgsConstructor
-public class PatientCard extends EntityBase{
+@Entity
+public class PatientCard extends EntityBase {
 
-    @Column(name = "client_id", columnDefinition = "BINARY(16)")
-    private UUID clientId;
     @Column(name = "age")
     private int age;
     @Column(name = "name")
@@ -25,10 +25,14 @@ public class PatientCard extends EntityBase{
     private double weight;
     @Column(name = "animal_type")
     private String animalType;
+    @ManyToOne
+    private Client client;
+    @BatchSize(size = 5)
+    @OneToMany(mappedBy = "patientCard")
+    private Collection<Appointment> appointments;
 
-    public PatientCard(UUID id, UUID clientId, int age, String name, double weight, String animalType) {
+    public PatientCard(UUID id, int age, String name, double weight, String animalType) {
         super(id);
-        this.clientId = clientId;
         this.age = age;
         this.name = name;
         this.weight = weight;

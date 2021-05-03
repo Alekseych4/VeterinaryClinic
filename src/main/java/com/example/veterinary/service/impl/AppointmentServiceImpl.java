@@ -3,6 +3,8 @@ package com.example.veterinary.service.impl;
 import com.example.veterinary.domain.dto.appointment.AppointmentDto;
 import com.example.veterinary.domain.entity.Appointment;
 import com.example.veterinary.repository.AppointmentRepository;
+import com.example.veterinary.repository.PatientCardRepository;
+import com.example.veterinary.repository.ScheduleItemRepository;
 import com.example.veterinary.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 public class AppointmentServiceImpl implements AppointmentService {
     private final ConversionService conversionService;
     private final AppointmentRepository appointmentRepository;
+    private final ScheduleItemRepository scheduleItemRepository;
+    private final PatientCardRepository patientCardRepository;
 
     @Override
     public List<AppointmentDto> getAll() {
@@ -29,15 +33,27 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public AppointmentDto create(AppointmentDto appointmentDto) {
+        var scheduleItem = scheduleItemRepository.getOne(appointmentDto.getScheduleItemId());
+        var patientCard = patientCardRepository.getOne(appointmentDto.getPatientCardId());
+
         Appointment appointment = conversionService.convert(appointmentDto, Appointment.class);
+        appointment.setScheduleItem(scheduleItem);
+        appointment.setPatientCard(patientCard);
+
         Appointment result = appointmentRepository.save(appointment);
         return conversionService.convert(result, AppointmentDto.class);
     }
 
     @Override
     public AppointmentDto update(AppointmentDto appointmentDto) {
+        var scheduleItem = scheduleItemRepository.getOne(appointmentDto.getScheduleItemId());
+        var patientCard = patientCardRepository.getOne(appointmentDto.getPatientCardId());
+
         Appointment appointment = conversionService.convert(appointmentDto, Appointment.class);
+        appointment.setScheduleItem(scheduleItem);
+        appointment.setPatientCard(patientCard);
         Appointment result = appointmentRepository.save(appointment);
+
         return conversionService.convert(result, AppointmentDto.class);
     }
 

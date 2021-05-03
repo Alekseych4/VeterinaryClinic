@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Setter
@@ -15,7 +16,7 @@ public class CardRecordDto {
     private UUID id;
     private UUID patientCardId;
     private UUID staffId;
-    private UUID appointmentId;
+    private Date date;
     private String diagnose;
     private String description;
     private String prescription;

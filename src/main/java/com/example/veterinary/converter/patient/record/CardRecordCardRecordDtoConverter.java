@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 public class CardRecordCardRecordDtoConverter implements Converter<CardRecord, CardRecordDto> {
     @Override
     public CardRecordDto convert(CardRecord source) {
-        return new CardRecordDto(source.getId(), source.getPatientCardId(), source.getStaffId(), source.getAppointmentId(),
-                source.getDiagnose(), source.getDescription(), source.getPrescription());
+        return new CardRecordDto(source.getId(), source.getPatientCard().getId(), source.getStaff().getId(),
+                source.getDate(), source.getDiagnose(), source.getDescription(),
+                source.getPrescription());
     }
 }

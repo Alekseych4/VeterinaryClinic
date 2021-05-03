@@ -10,7 +10,11 @@ public class ClientDtoClientConverter implements Converter<ClientDto, Client> {
     @Override
     public Client convert(ClientDto source) {
         if (source.getId() == null){
-            return new Client(source.getUserType(), source.getName(), source.getSurname());
+            return Client.builder()
+                    .name(source.getName())
+                    .surname(source.getSurname())
+                    .userType(source.getUserType())
+                    .build();
         }
 
         return new Client(source.getId(), source.getUserType(), source.getName(), source.getSurname());

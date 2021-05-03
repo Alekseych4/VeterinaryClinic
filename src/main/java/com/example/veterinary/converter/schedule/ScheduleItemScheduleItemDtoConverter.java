@@ -10,6 +10,6 @@ public class ScheduleItemScheduleItemDtoConverter implements Converter<ScheduleI
     @Override
     public ScheduleItemDto convert(ScheduleItem source) {
         return new ScheduleItemDto(source.getId(), source.getTimeStart(), source.getDuration(),
-                source.getStaffId(), source.getDescription());
+                source.getStaff().getId(), source.getDescription());
     }
 }

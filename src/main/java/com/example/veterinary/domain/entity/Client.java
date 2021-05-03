@@ -5,12 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.UUID;
 
 @Getter
@@ -27,6 +24,8 @@ public class Client extends EntityBase {
     private String name;
     @Column(name = "surname", nullable = false)
     private String surname;
+    @OneToMany(mappedBy = "client")
+    private Collection<PatientCard> patientCards;
 
     public Client(UUID id, UserType userType, String name, String surname) {
         super(id);

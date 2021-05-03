@@ -10,11 +10,15 @@ public class CardRecordDtoCardRecordConverter implements Converter<CardRecordDto
     @Override
     public CardRecord convert(CardRecordDto source) {
         if (source.getId() == null){
-            return new CardRecord(source.getPatientCardId(), source.getStaffId(), source.getAppointmentId(),
-                    source.getDiagnose(), source.getDescription(), source.getPrescription());
+            return CardRecord.builder()
+                    .date(source.getDate())
+                    .description(source.getDescription())
+                    .diagnose(source.getDiagnose())
+                    .prescription(source.getPrescription())
+                    .build();
         }
 
-        return new CardRecord(source.getId(), source.getPatientCardId(), source.getStaffId(), source.getAppointmentId(),
-                source.getDiagnose(), source.getDescription(), source.getPrescription());
+        return new CardRecord(source.getId(), source.getDate(), source.getDiagnose(), source.getDescription(),
+                source.getPrescription());
     }
 }

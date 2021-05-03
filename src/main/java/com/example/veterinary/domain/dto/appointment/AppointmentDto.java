@@ -14,5 +14,5 @@ import java.util.UUID;
 public class AppointmentDto {
     private UUID id;
     private UUID scheduleItemId;
-    private UUID clientId;
+    private UUID patientCardId;
 }

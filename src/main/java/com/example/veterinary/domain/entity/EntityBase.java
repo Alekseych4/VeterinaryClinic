@@ -13,8 +13,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @MappedSuperclass
-public class EntityBase {
+public abstract class EntityBase {
     @Id
-    @Column(name = "id", columnDefinition = "BINARY(16)")
+    @Column(name = "id")
     private UUID id = UUID.randomUUID();
 }

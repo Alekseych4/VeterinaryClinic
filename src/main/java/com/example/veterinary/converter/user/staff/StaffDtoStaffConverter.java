@@ -9,9 +9,17 @@ import org.springframework.stereotype.Component;
 public class StaffDtoStaffConverter implements Converter<StaffDto, Staff> {
     @Override
     public Staff convert(StaffDto source) {
-        Staff staff = new Staff(source.getUserType(), source.getName(), source.getSurname(),
+        if (source.getId() == null){
+            return Staff.builder()
+                    .userType(source.getUserType())
+                    .name(source.getName())
+                    .surname(source.getSurname())
+                    .position(source.getPosition())
+                    .experience(source.getExperience())
+                    .build();
+        }
+
+        return new Staff(source.getId(), source.getUserType(), source.getName(), source.getSurname(),
                 source.getPosition(), source.getExperience());
-        staff.setId(source.getId());
-        return staff;
     }
 }

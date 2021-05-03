@@ -10,11 +10,15 @@ public class PatientCardDtoPatientCardConverter implements Converter<PatientCard
     @Override
     public PatientCard convert(PatientCardDto source) {
         if (source.getId() == null){
-            return new PatientCard(source.getClientId(), source.getAge(), source.getName(), source.getWeight(),
-                    source.getAnimalType());
+            return PatientCard.builder()
+                    .name(source.getName())
+                    .age(source.getAge())
+                    .animalType(source.getAnimalType())
+                    .weight(source.getWeight())
+                    .build();
         }
 
-        return new PatientCard(source.getId(), source.getClientId(), source.getAge(), source.getName(),
+        return new PatientCard(source.getId(), source.getAge(), source.getName(),
                 source.getWeight(), source.getAnimalType());
     }
 }

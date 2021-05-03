@@ -11,9 +11,9 @@ public class AppointmentDtoAppointmentConverter implements Converter<Appointment
     @Override
     public Appointment convert(AppointmentDto source) {
         if (source.getId() == null){
-            return new Appointment(source.getScheduleItemId(), source.getClientId());
+            return Appointment.builder().build();
         }
 
-        return new Appointment(source.getId(), source.getScheduleItemId(), source.getClientId());
+        return new Appointment(source.getId());
     }
 }
