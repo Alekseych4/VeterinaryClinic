@@ -15,12 +15,14 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class InfoAboutClinicServiceImpl implements InfoAboutClinicService {
 
     private final InfoAboutClinicRepository infoAboutClinicRepository;
     private final ConversionService conversionService;
 
+    @Transactional(readOnly = true)
     @Override
     public List<InfoAboutClinicDto> getAllInfo() {
         return infoAboutClinicRepository.findAll()

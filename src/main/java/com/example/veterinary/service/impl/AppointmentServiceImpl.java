@@ -10,12 +10,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class AppointmentServiceImpl implements AppointmentService {
     private final ConversionService conversionService;
@@ -23,6 +25,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final ScheduleItemRepository scheduleItemRepository;
     private final PatientCardRepository patientCardRepository;
 
+    @Transactional(readOnly = true)
     @Override
     public List<AppointmentDto> getAll() {
         return appointmentRepository.findAll()
