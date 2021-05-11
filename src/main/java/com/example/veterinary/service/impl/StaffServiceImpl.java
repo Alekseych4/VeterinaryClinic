@@ -2,11 +2,14 @@ package com.example.veterinary.service.impl;
 
 import com.example.veterinary.domain.dto.user.StaffDto;
 import com.example.veterinary.domain.entity.Staff;
+import com.example.veterinary.domain.entity.User;
 import com.example.veterinary.repository.StaffRepository;
+import com.example.veterinary.repository.UserRepository;
 import com.example.veterinary.service.StaffService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +22,7 @@ public class StaffServiceImpl implements StaffService {
 
     private  final ConversionService conversionService;
     private final StaffRepository staffRepository;
+    private final UserRepository userRepository;
 
     @Override
     public StaffDto create(StaffDto staffDto) {
@@ -29,7 +33,10 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public StaffDto update(StaffDto staffDto) {
+        User user = userRepository.findById(staffDto.getId()).orElseThrow();
+
         Staff staff = conversionService.convert(staffDto, Staff.class);
+        staff.setUser(user);
         Staff res = staffRepository.save(staff);
         return conversionService.convert(res, StaffDto.class);
     }

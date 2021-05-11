@@ -13,7 +13,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class StaffDto {
     private UUID id;
-    private UserType userType;
     private String name;
     private String surname;
     private String position;

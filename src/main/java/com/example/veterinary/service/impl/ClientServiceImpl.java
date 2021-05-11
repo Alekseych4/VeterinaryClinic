@@ -2,7 +2,9 @@ package com.example.veterinary.service.impl;
 
 import com.example.veterinary.domain.dto.user.ClientDto;
 import com.example.veterinary.domain.entity.Client;
+import com.example.veterinary.domain.entity.User;
 import com.example.veterinary.repository.ClientRepository;
+import com.example.veterinary.repository.UserRepository;
 import com.example.veterinary.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ public class ClientServiceImpl implements ClientService {
 
     private final ConversionService conversionService;
     private final ClientRepository clientRepository;
+    private final UserRepository userRepository;
 
     @Override
     public ClientDto create(ClientDto clientDto) {
@@ -29,7 +32,10 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public ClientDto update(ClientDto clientDto) {
+        User user = userRepository.findById(clientDto.getId()).orElseThrow();
+
         Client client = conversionService.convert(clientDto, Client.class);
+        client.setUser(user);
         Client result = clientRepository.save(client);
         return conversionService.convert(result, ClientDto.class);
     }

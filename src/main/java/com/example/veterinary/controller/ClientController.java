@@ -4,6 +4,7 @@ import com.example.veterinary.domain.dto.user.ClientDto;
 import com.example.veterinary.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;

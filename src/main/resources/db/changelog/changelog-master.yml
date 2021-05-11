@@ -1,6 +1,21 @@
 databaseChangeLog:
-  - include:
-      file: classpath:db/changelog/sql/init.sql
-  - changeSet:
-      id: "1"
-      author: "alekseych4"
+    - include:
+        file: classpath:db/changelog/sql/init.sql
+    - changeSet:
+        id: "1"
+        author: "alekseych"
+        changes:
+          - sqlFile:
+              dbms: 'mariadb, mysql'
+              path: sql/changes1.sql
+              splitStatements: true
+              relativeToChangelogFile: true
+    - changeSet:
+          id: "2"
+          author: "alekseych"
+          changes:
+              - sqlFile:
+                    dbms: 'mariadb, mysql'
+                    path: sql/changes2.sql
+                    splitStatements: true
+                    relativeToChangelogFile: true

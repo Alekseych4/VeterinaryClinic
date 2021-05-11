@@ -15,7 +15,7 @@ public class ClientDto {
     private UUID id;
     private String name;
     private String surname;
-    private UserType userType = UserType.CLIENT;
+    private UserRole userRole = UserRole.CLIENT;
 
     public ClientDto(UUID id, String name, String surname) {
         this.id = id;

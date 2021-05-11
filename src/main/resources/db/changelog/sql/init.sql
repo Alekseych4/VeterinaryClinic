@@ -1,13 +1,13 @@
 -- liquibase formatted sql
 -- changeset alekseych:1
 create table staff (
-                       id BINARY(16) not null,
+                       user_id BINARY(16) not null,
                        user_type integer not null,
                        name varchar(255),
                        surname varchar(255),
                        position varchar(255),
                        experience varchar(255),
-                       primary key (id)
+                       primary key (user_id)
 );
 -- changeset alekseych:2
 create table schedule_item (
@@ -17,17 +17,17 @@ create table schedule_item (
                                duration bigint not null,
                                time_start datetime not null,
                                primary key (id),
-                               foreign key (staff_id) references staff (id)
+                               foreign key (staff_id) references staff (user_id)
                                    on delete cascade
                                    on update cascade
 ) engine=InnoDB;
 -- changeset alekseych:3
 create table client (
-                        id BINARY(16) not null,
+                        user_id BINARY(16) not null,
                         name varchar(255) not null,
                         surname varchar(255) not null,
                         user_type integer not null,
-                        primary key (id)
+                        primary key (user_id)
 ) engine=InnoDB;
 -- changeset alekseych:4
 create table patient_card (
@@ -38,7 +38,7 @@ create table patient_card (
                               name varchar(255),
                               weight double precision,
                               primary key (id),
-                              foreign key (client_id) references client (id)
+                              foreign key (client_id) references client (user_id)
                                   on delete cascade
                                   on update cascade
 ) engine=InnoDB;
@@ -68,7 +68,7 @@ create table card_record (
                              foreign key (patient_card_id) references patient_card (id)
                                  on delete cascade
                                  on update cascade,
-                             foreign key (staff_id) references staff (id)
+                             foreign key (staff_id) references staff (user_id)
 ) engine=InnoDB;
 -- changeset alekseych:7
 create table info_about_clinic (

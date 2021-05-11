@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class StaffStaffDtoConverter implements Converter<Staff, StaffDto> {
     @Override
     public StaffDto convert(Staff source) {
-        return new StaffDto(source.getId(), source.getUserType(), source.getName(),
+        return new StaffDto(source.getId(), source.getName(),
                 source.getSurname(), source.getPosition(), source.getExperience());
     }
 }
