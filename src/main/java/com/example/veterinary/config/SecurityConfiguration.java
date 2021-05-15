@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
-                .ignoring().antMatchers(HttpMethod.POST, "/auth/token", "/auth/sign-up")
+                .ignoring().antMatchers(HttpMethod.POST, "/auth/sign-in", "/auth/sign-up")
                 .and()
                 .ignoring().antMatchers(HttpMethod.GET, "/schedules", "/about");
 

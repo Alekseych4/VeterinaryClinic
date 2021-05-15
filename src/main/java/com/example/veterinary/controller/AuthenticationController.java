@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @RestController
 @RequestMapping("/auth")
@@ -13,12 +15,13 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/sign-up")
-    public String signUp(@RequestBody UserCredentialsDto userCredentials){
-        return authenticationService.signUp(userCredentials);
+    public String signUp(@RequestBody UserCredentialsDto userCredentials,
+                         @RequestParam(name = "id", required = false) UUID adminId){
+        return authenticationService.signUp(userCredentials, adminId);
     }
 
-    @PostMapping("/token")
-    public String getToken(@RequestBody UserCredentialsDto userCredentialsDto){
-        return authenticationService.getToken(userCredentialsDto);
+    @PostMapping("/sign-in")
+    public String signIn(@RequestBody UserCredentialsDto userCredentialsDto){
+        return authenticationService.signIn(userCredentialsDto);
     }
 }

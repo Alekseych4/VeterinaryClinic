@@ -2,8 +2,10 @@ package com.example.veterinary.service;
 
 import com.example.veterinary.domain.dto.authentication.UserCredentialsDto;
 
-public interface AuthenticationService {
-    String signUp(UserCredentialsDto userCredentialsDto);
+import java.util.UUID;
 
-    String getToken(UserCredentialsDto userCredentialsDto);
+public interface AuthenticationService {
+    String signUp(UserCredentialsDto userCredentialsDto, UUID adminId);
+
+    String signIn(UserCredentialsDto userCredentialsDto);
 }
