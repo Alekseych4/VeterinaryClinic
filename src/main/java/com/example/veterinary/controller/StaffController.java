@@ -4,8 +4,10 @@ import com.example.veterinary.domain.dto.user.StaffDto;
 import com.example.veterinary.service.StaffService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -21,21 +23,24 @@ public class StaffController {
     }
 
     @GetMapping("/by-name")
-    public StaffDto findByName(@RequestParam("name") String name){
-        return staffService.findByName(name);
+    public List<StaffDto> findByNameAndSurname(@RequestParam("name") String name, @RequestParam("surname") String surname){
+        return staffService.findByNameAndSurname(name, surname);
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public StaffDto create(@RequestBody StaffDto staffDto){
         return staffService.create(staffDto);
     }
 
     @PutMapping
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public StaffDto update(@RequestBody StaffDto staffDto){
         return staffService.update(staffDto);
     }
 
     @DeleteMapping
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public void delete(@RequestParam("id") UUID id){
         staffService.delete(id);
     }

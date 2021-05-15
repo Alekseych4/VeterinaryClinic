@@ -26,8 +26,10 @@ public class CardRecord extends EntityBase {
     @Column(name = "prescription")
     private String prescription;
     @ManyToOne
+    @JoinColumn(name = "patient_card_id")
     private PatientCard patientCard;
     @ManyToOne
+    @JoinColumn(name = "staff_id")
     private Staff staff;
 
 

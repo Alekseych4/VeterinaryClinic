@@ -4,6 +4,7 @@ import com.example.veterinary.domain.dto.schedule.ScheduleItemDto;
 import com.example.veterinary.service.ScheduleItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,16 +29,19 @@ public class ScheduleItemController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
     public ScheduleItemDto create(@RequestBody ScheduleItemDto scheduleItemDto){
         return scheduleItemService.create(scheduleItemDto);
     }
 
     @PutMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
     public ScheduleItemDto update(@RequestBody ScheduleItemDto scheduleItemDto){
         return scheduleItemService.update(scheduleItemDto);
     }
 
     @DeleteMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
     public void delete(@RequestParam("id") UUID id){
         scheduleItemService.delete(id);
     }

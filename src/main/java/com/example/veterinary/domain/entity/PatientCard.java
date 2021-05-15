@@ -26,6 +26,7 @@ public class PatientCard extends EntityBase {
     @Column(name = "animal_type")
     private String animalType;
     @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
     @BatchSize(size = 5)
     @OneToMany(mappedBy = "patientCard")

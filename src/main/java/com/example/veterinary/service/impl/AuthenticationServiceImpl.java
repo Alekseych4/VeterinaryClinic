@@ -5,6 +5,7 @@ import com.example.veterinary.domain.dto.user.UserRole;
 import com.example.veterinary.domain.entity.Client;
 import com.example.veterinary.domain.entity.Staff;
 import com.example.veterinary.domain.entity.User;
+import com.example.veterinary.exception.NoSuchItemException;
 import com.example.veterinary.repository.UserRepository;
 import com.example.veterinary.security.JwtTokenService;
 import com.example.veterinary.service.AuthenticationService;
@@ -40,7 +41,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public String getToken(UserCredentialsDto userCredentialsDto) {
         User user = userRepository.findByEmail(userCredentialsDto.getEmail())
-                .orElseThrow(() -> new RuntimeException("No such account"));
+                .orElseThrow(() -> new NoSuchItemException("No such account"));
 
         if (!passwordEncoder.matches(userCredentialsDto.getPassword(), user.getPassword())){
             throw new RuntimeException("Wrong password/email combination");

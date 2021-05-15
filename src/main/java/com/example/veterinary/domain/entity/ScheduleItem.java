@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
@@ -26,6 +23,7 @@ public class ScheduleItem extends EntityBase{
     @Column(name = "description")
     private String description;
     @ManyToOne
+    @JoinColumn(name = "staff_id")
     private Staff staff;
     @OneToOne(mappedBy = "scheduleItem")
     private Appointment appointment;

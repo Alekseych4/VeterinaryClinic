@@ -2,6 +2,7 @@ package com.example.veterinary.service;
 
 import com.example.veterinary.domain.dto.user.StaffDto;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface StaffService {
@@ -11,7 +12,7 @@ public interface StaffService {
 
     StaffDto findById(UUID id);
 
-    StaffDto findByName(String name);
+    List<StaffDto> findByNameAndSurname(String fullName, String surname);
 
     void delete(UUID id);
 }

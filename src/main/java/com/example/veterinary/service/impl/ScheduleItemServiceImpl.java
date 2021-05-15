@@ -37,6 +37,7 @@ public class ScheduleItemServiceImpl implements ScheduleItemService {
     }
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public ScheduleItemDto create(ScheduleItemDto scheduleItemDto) {
         Staff staff = staffRepository.getOne(scheduleItemDto.getStaffId());
 

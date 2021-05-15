@@ -12,8 +12,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,5 +62,12 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public void delete(UUID id) {
         appointmentRepository.deleteById(id);
+    }
+
+    @Override
+    public List<AppointmentDto> getAllByCardId(UUID cardId) {
+        return appointmentRepository.findAllByPatientCard(patientCardRepository.getOne(cardId)).stream()
+                .map(item -> conversionService.convert(item, AppointmentDto.class))
+                .collect(Collectors.toList());
     }
 }

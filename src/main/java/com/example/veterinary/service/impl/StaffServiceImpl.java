@@ -9,11 +9,12 @@ import com.example.veterinary.service.StaffService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -48,9 +49,10 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public StaffDto findByName(String name) {
-        Staff staff = staffRepository.findByName(name);
-        return conversionService.convert(staff, StaffDto.class);
+    public List<StaffDto> findByNameAndSurname(String fullName, String surname) {
+        return staffRepository.findByNameAndSurname(fullName, surname).stream()
+                .map(item -> conversionService.convert(item, StaffDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override

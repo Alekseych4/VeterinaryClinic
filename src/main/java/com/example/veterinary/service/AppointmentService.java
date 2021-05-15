@@ -13,4 +13,6 @@ public interface AppointmentService {
     AppointmentDto update(AppointmentDto appointmentDto);
 
     void delete(UUID id);
+
+    List<AppointmentDto> getAllByCardId(UUID userId);
 }

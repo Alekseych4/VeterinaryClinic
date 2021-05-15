@@ -3,6 +3,7 @@ package com.example.veterinary.domain.dto.user;
 public enum UserRole {
     ADMIN,
     MEDICAL_STAFF,
+    DOCTOR,
     RECEPTIONIST,
     CLIENT;
 
