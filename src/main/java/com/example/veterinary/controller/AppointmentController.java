@@ -32,10 +32,10 @@ public class AppointmentController {
         return appointmentService.getAll();
     }
 
-    @GetMapping("/by-id")
+    @GetMapping("/by-card-id")
     @PreAuthorize("hasAnyRole('ADMIN', 'CLIENT', 'RECEPTIONIST')")
-    public List<AppointmentDto> getAllByUserId(@RequestParam("id") UUID userId){
-        return appointmentService.getAllByCardId(userId);
+    public List<AppointmentDto> getAllByCardId(@RequestParam("id") UUID cardId){
+        return appointmentService.getAllByCardId(cardId);
     }
 
     @GetMapping("/doctor")

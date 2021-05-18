@@ -18,7 +18,9 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -68,6 +70,14 @@ public class CardRecordServiceImpl implements CardRecordService {
     public CardRecordDto findById(UUID id) {
         var cardRecord = cardRecordRepository.findById(id).orElseThrow(NoSuchRecordException::new);
         return conversionService.convert(cardRecord, CardRecordDto.class);
+    }
+
+    @Override
+    public List<CardRecordDto> getCardRecords(UUID id) {
+        PatientCard patientCard = patientCardRepository.findById(id).orElseThrow(NoSuchRecordException::new);
+        return patientCard.getCardRecords().stream()
+                .map(item -> conversionService.convert(item, CardRecordDto.class))
+                .collect(Collectors.toList());
     }
 
     private Appointment getAppointmentIfAny(PatientCard patientCard, Staff staff, CardRecordDto cardRecordDto){

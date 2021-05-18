@@ -34,12 +34,6 @@ public class StaffController {
         return staffService.findByNameAndSurname(name, surname);
     }
 
-    @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    public StaffDto create(@RequestBody StaffDto staffDto){
-        return staffService.create(staffDto);
-    }
-
     @PutMapping
     @PreAuthorize("hasAnyRole('ADMIN')")
     public StaffDto update(@RequestBody StaffDto staffDto){

@@ -8,6 +8,7 @@ import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -31,6 +32,8 @@ public class PatientCard extends EntityBase {
     @BatchSize(size = 5)
     @OneToMany(mappedBy = "patientCard")
     private Collection<Appointment> appointments;
+    @OneToMany(mappedBy = "patientCard")
+    private Collection<CardRecord> cardRecords;
 
     public PatientCard(UUID id, int age, String name, double weight, String animalType) {
         super(id);

@@ -15,11 +15,6 @@ import java.util.UUID;
 public class ClientController {
     private final ClientService clientService;
 
-    @PostMapping
-    public ClientDto createClient(@RequestBody ClientDto clientDto){
-        return clientService.create(clientDto);
-    }
-
     @PutMapping
     public ClientDto update(@RequestBody ClientDto clientDto){
         return clientService.update(clientDto);
