@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -14,6 +15,12 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class PatientCardController {
     private final PatientCardService patientCardService;
+
+    @GetMapping("/my-cards")
+    @PreAuthorize("hasAnyRole('ADMIN', 'RECEPTIONIST', 'CLIENT', 'DOCTOR')")
+    public List<PatientCardDto> getClientCards(@RequestParam("clientId") UUID clientId){
+        return patientCardService.getClientCards(clientId);
+    }
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'RECEPTIONIST', 'CLIENT', 'DOCTOR')")

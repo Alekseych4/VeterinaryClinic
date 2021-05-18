@@ -1,8 +1,11 @@
 package com.example.veterinary.service.impl;
 
 import com.example.veterinary.domain.dto.user.StaffDto;
+import com.example.veterinary.domain.dto.user.UserRole;
+import com.example.veterinary.domain.dto.user.UserStaffDto;
 import com.example.veterinary.domain.entity.Staff;
 import com.example.veterinary.domain.entity.User;
+import com.example.veterinary.exception.controller.NoSuchRecordException;
 import com.example.veterinary.repository.StaffRepository;
 import com.example.veterinary.repository.UserRepository;
 import com.example.veterinary.service.StaffService;
@@ -24,7 +27,7 @@ public class StaffServiceImpl implements StaffService {
     private  final ConversionService conversionService;
     private final StaffRepository staffRepository;
     private final UserRepository userRepository;
-
+    //TODO: delete this:
     @Override
     public StaffDto create(StaffDto staffDto) {
         Staff staff = conversionService.convert(staffDto, Staff.class);
@@ -34,7 +37,7 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public StaffDto update(StaffDto staffDto) {
-        User user = userRepository.findById(staffDto.getId()).orElseThrow();
+        User user = userRepository.findById(staffDto.getId()).orElseThrow(() -> new NoSuchRecordException());
 
         Staff staff = conversionService.convert(staffDto, Staff.class);
         staff.setUser(user);
@@ -44,13 +47,14 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public StaffDto findById(UUID id) {
-        Staff staff = staffRepository.getOne(id);
+        Staff staff = staffRepository.findById(id).orElseThrow(() -> new NoSuchRecordException());
         return conversionService.convert(staff, StaffDto.class);
     }
 
     @Override
     public List<StaffDto> findByNameAndSurname(String fullName, String surname) {
-        return staffRepository.findByNameAndSurname(fullName, surname).stream()
+        return staffRepository.findByNameAndSurname(fullName, surname)
+                .stream()
                 .map(item -> conversionService.convert(item, StaffDto.class))
                 .collect(Collectors.toList());
     }
@@ -59,4 +63,13 @@ public class StaffServiceImpl implements StaffService {
     public void delete(UUID id) {
         staffRepository.deleteById(id);
     }
+
+    @Override
+    public List<UserStaffDto> getAll() {
+        return staffRepository.findAll().stream()
+                .map(item -> conversionService.convert(item, UserStaffDto.class))
+                .collect(Collectors.toList());
+    }
+
+
 }

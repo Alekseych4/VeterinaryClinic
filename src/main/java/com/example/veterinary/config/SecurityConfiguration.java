@@ -1,6 +1,7 @@
 package com.example.veterinary.config;
 
 import com.example.veterinary.domain.dto.user.UserRole;
+import com.example.veterinary.security.CustomExceptionTranslationFilter;
 import com.example.veterinary.security.JwtRequestFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -23,6 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final JwtRequestFilter jwtRequestFilter;
+    private final CustomExceptionTranslationFilter exceptionTranslationFilter;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -45,6 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         super.configure(http);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterAt(exceptionTranslationFilter, ExceptionTranslationFilter.class);
     }
 
     @Bean

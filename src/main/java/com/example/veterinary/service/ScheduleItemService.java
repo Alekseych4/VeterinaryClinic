@@ -8,6 +8,8 @@ import java.util.UUID;
 public interface ScheduleItemService {
     List<ScheduleItemDto> getAll();
 
+    List<ScheduleItemDto> getAllByStaffId(UUID staffId);
+
     ScheduleItemDto create(ScheduleItemDto scheduleItemNoIdDto);
 
     ScheduleItemDto update(ScheduleItemDto scheduleItemDto);

@@ -1,9 +1,10 @@
 package com.example.veterinary.service.impl;
 
+import com.example.veterinary.domain.dto.authentication.AuthResponseDto;
 import com.example.veterinary.domain.dto.authentication.UserCredentialsDto;
 import com.example.veterinary.domain.dto.user.UserRole;
 import com.example.veterinary.domain.entity.User;
-import com.example.veterinary.exception.NoSuchRowException;
+import com.example.veterinary.exception.authentication.NoSuchUserException;
 import com.example.veterinary.repository.UserRepository;
 import com.example.veterinary.security.JwtTokenService;
 import com.example.veterinary.service.AuthenticationService;
@@ -26,7 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtTokenService jwtTokenService;
 
     @Override
-    public String signUp(UserCredentialsDto userCredentialsDto, UUID adminId){
+    public AuthResponseDto signUp(UserCredentialsDto userCredentialsDto, UUID adminId){
         if (adminId == null) {
             if (userCredentialsDto.getUserRole() != null){
                 throw new AccessDeniedException("No permission for a request");
@@ -36,7 +37,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         } else {
             userRepository.findById(adminId)
                     .filter(user1 -> user1.getUserRole().equals(UserRole.ADMIN))
-                    .orElseThrow();
+                    .orElseThrow(NoSuchUserException::new);
 
             userService.create(userCredentialsDto);
         }
@@ -45,14 +46,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public String signIn(UserCredentialsDto userCredentialsDto) {
+    public AuthResponseDto signIn(UserCredentialsDto userCredentialsDto) {
         User user = userRepository.findByEmail(userCredentialsDto.getEmail())
-                .orElseThrow(() -> new NoSuchRowException("No such account"));
+                .orElseThrow(() -> new NoSuchUserException());
 
         if (!passwordEncoder.matches(userCredentialsDto.getPassword(), user.getPassword())){
-            throw new RuntimeException("Wrong password/email combination");
+            throw new NoSuchUserException("Wrong password/email combination");
         }
 
-        return jwtTokenService.generateToken(user);
+        String token = jwtTokenService.generateToken(user);
+        return AuthResponseDto.builder()
+                .id(user.getId())
+                .token(token)
+                .build();
     }
 }

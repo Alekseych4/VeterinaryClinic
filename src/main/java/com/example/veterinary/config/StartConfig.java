@@ -2,7 +2,7 @@ package com.example.veterinary.config;
 
 import com.example.veterinary.domain.dto.authentication.UserCredentialsDto;
 import com.example.veterinary.domain.dto.user.UserRole;
-import com.example.veterinary.exception.NoSuchRowException;
+import com.example.veterinary.exception.authentication.NoSuchUserException;
 import com.example.veterinary.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +28,7 @@ public class StartConfig {
 
         try {
             userService.isUserExistByEmail(userCredentialsDto.getEmail());
-        } catch (NoSuchRowException e){
+        } catch (NoSuchUserException e){
             userService.create(userCredentialsDto);
         }
 

@@ -28,6 +28,11 @@ public class ScheduleItemController {
         return scheduleItemService.getAll();
     }
 
+    @GetMapping("/by-doctor")
+    public List<ScheduleItemDto> getAllByStaffId(@RequestParam("id") UUID staffId){
+        return scheduleItemService.getAllByStaffId(staffId);
+    }
+
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
     public ScheduleItemDto create(@RequestBody ScheduleItemDto scheduleItemDto){

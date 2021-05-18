@@ -15,4 +15,6 @@ public interface AppointmentService {
     void delete(UUID id);
 
     List<AppointmentDto> getAllByCardId(UUID userId);
+
+    List<AppointmentDto> getAllByDoctorId(UUID doctorId);
 }

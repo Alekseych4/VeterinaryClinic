@@ -1,6 +1,7 @@
 package com.example.veterinary.controller;
 
 import com.example.veterinary.domain.dto.user.StaffDto;
+import com.example.veterinary.domain.dto.user.UserStaffDto;
 import com.example.veterinary.service.StaffService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,12 @@ import java.util.UUID;
 public class StaffController {
 
     private final StaffService staffService;
+
+    @GetMapping("/all")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<UserStaffDto> getAll(){
+        return staffService.getAll();
+    }
 
     @GetMapping("/by-id")
     public StaffDto findById(@RequestParam("id") UUID id){

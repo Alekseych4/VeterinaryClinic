@@ -9,13 +9,11 @@ import java.util.UUID;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 public class ClientDto {
     private UUID id;
     private String name;
     private String surname;
-    private UserRole userRole = UserRole.CLIENT;
 
     public ClientDto(UUID id, String name, String surname) {
         this.id = id;

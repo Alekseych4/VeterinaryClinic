@@ -1,5 +1,6 @@
 package com.example.veterinary.controller;
 
+import com.example.veterinary.domain.dto.authentication.AuthResponseDto;
 import com.example.veterinary.domain.dto.authentication.UserCredentialsDto;
 import com.example.veterinary.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +16,13 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/sign-up")
-    public String signUp(@RequestBody UserCredentialsDto userCredentials,
+    public AuthResponseDto signUp(@RequestBody UserCredentialsDto userCredentials,
                          @RequestParam(name = "id", required = false) UUID adminId){
         return authenticationService.signUp(userCredentials, adminId);
     }
 
     @PostMapping("/sign-in")
-    public String signIn(@RequestBody UserCredentialsDto userCredentialsDto){
+    public AuthResponseDto signIn(@RequestBody UserCredentialsDto userCredentialsDto){
         return authenticationService.signIn(userCredentialsDto);
     }
 }

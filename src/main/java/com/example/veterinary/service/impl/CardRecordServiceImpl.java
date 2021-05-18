@@ -1,13 +1,17 @@
 package com.example.veterinary.service.impl;
 
 import com.example.veterinary.domain.dto.patient.CardRecordDto;
+import com.example.veterinary.domain.entity.Appointment;
 import com.example.veterinary.domain.entity.CardRecord;
 import com.example.veterinary.domain.entity.PatientCard;
 import com.example.veterinary.domain.entity.Staff;
+import com.example.veterinary.exception.controller.NoSuchRecordException;
 import com.example.veterinary.repository.CardRecordRepository;
 import com.example.veterinary.repository.PatientCardRepository;
 import com.example.veterinary.repository.StaffRepository;
+import com.example.veterinary.service.AppointmentService;
 import com.example.veterinary.service.CardRecordService;
+import com.example.veterinary.service.ScheduleItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
@@ -24,29 +28,33 @@ public class CardRecordServiceImpl implements CardRecordService {
     private final CardRecordRepository cardRecordRepository;
     private final PatientCardRepository patientCardRepository;
     private final StaffRepository staffRepository;
+    private final ScheduleItemService scheduleItemService;
 
     @Override
     public CardRecordDto create(CardRecordDto cardRecordDto) {
-        var patientCard = patientCardRepository.getOne(cardRecordDto.getPatientCardId());
-        var staff = staffRepository.getOne(cardRecordDto.getStaffId());
+        var patientCard = patientCardRepository.findById(cardRecordDto.getPatientCardId())
+                .orElseThrow(NoSuchRecordException::new);
+        var staff = staffRepository.findById(cardRecordDto.getStaffId())
+                .orElseThrow(NoSuchRecordException::new);
 
-        if (isAppointmentExist(patientCard, staff, cardRecordDto)) {
+        Appointment appointment = getAppointmentIfAny(patientCard, staff, cardRecordDto);
 
-            CardRecord cardRecord = conversionService.convert(cardRecordDto, CardRecord.class);
-            cardRecord.setPatientCard(patientCard);
-            cardRecord.setStaff(staff);
-            CardRecord result = cardRecordRepository.save(cardRecord);
+        CardRecord cardRecord = conversionService.convert(cardRecordDto, CardRecord.class);
+        cardRecord.setPatientCard(patientCard);
+        cardRecord.setStaff(staff);
+        CardRecord result = cardRecordRepository.save(cardRecord);
 
-            return conversionService.convert(result, CardRecordDto.class);
-        }
+        scheduleItemService.delete(appointment.getScheduleItem().getId());
 
-        throw new RuntimeException("No appointment!");
+        return conversionService.convert(result, CardRecordDto.class);
     }
 
     @Override
     public CardRecordDto update(CardRecordDto cardRecordDto) {
-        var patientCard = patientCardRepository.getOne(cardRecordDto.getPatientCardId());
-        var staff = staffRepository.getOne(cardRecordDto.getStaffId());
+        var patientCard = patientCardRepository.findById(cardRecordDto.getPatientCardId())
+                .orElseThrow(NoSuchRecordException::new);
+        var staff = staffRepository.findById(cardRecordDto.getStaffId())
+                .orElseThrow(NoSuchRecordException::new);
 
         CardRecord cardRecord = conversionService.convert(cardRecordDto, CardRecord.class);
         cardRecord.setPatientCard(patientCard);
@@ -58,14 +66,14 @@ public class CardRecordServiceImpl implements CardRecordService {
 
     @Override
     public CardRecordDto findById(UUID id) {
-        var cardRecord = cardRecordRepository.getOne(id);
+        var cardRecord = cardRecordRepository.findById(id).orElseThrow(NoSuchRecordException::new);
         return conversionService.convert(cardRecord, CardRecordDto.class);
     }
 
-    private boolean isAppointmentExist (PatientCard patientCard, Staff staff, CardRecordDto cardRecordDto){
+    private Appointment getAppointmentIfAny(PatientCard patientCard, Staff staff, CardRecordDto cardRecordDto){
          return patientCard.getAppointments()
                 .stream()
-                .anyMatch(item -> {
+                .filter(item -> {
                     var scheduleItem = item.getScheduleItem();
                     var scheduleItemTimeStart = scheduleItem.getTimeStart();
                     var scheduleItemStaffId = scheduleItem.getStaff().getId();
@@ -75,6 +83,8 @@ public class CardRecordServiceImpl implements CardRecordService {
                     boolean isStaffValid = scheduleItemStaffId.equals(staff.getId());
 
                     return isTimeValid && isStaffValid;
-                });
+                })
+                 .findFirst()
+                 .orElseThrow(() -> new NoSuchRecordException("No appointment for this client"));
     }
 }

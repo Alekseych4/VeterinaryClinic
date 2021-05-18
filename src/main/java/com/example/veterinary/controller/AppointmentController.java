@@ -5,6 +5,7 @@ import com.example.veterinary.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,12 @@ public class AppointmentController {
     @PreAuthorize("hasAnyRole('ADMIN', 'CLIENT', 'RECEPTIONIST')")
     public List<AppointmentDto> getAllByUserId(@RequestParam("id") UUID userId){
         return appointmentService.getAllByCardId(userId);
+    }
+
+    @GetMapping("/doctor")
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'RECEPTIONIST')")
+    public List<AppointmentDto> getAllByDoctorId(@RequestParam("id") UUID doctorId){
+        return appointmentService.getAllByDoctorId(doctorId);
     }
 
     @PostMapping
