@@ -13,4 +13,6 @@ public interface CardRecordService {
     CardRecordDto findById(UUID id);
 
     List<CardRecordDto> getCardRecords(UUID id);
+
+    List<CardRecordDto> getRecordsByDoctorId(UUID doctorId);
 }

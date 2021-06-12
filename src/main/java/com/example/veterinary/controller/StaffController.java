@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/staff")
+@CrossOrigin
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class StaffController {
 

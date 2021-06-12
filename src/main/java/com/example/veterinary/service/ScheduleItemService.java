@@ -15,4 +15,10 @@ public interface ScheduleItemService {
     ScheduleItemDto update(ScheduleItemDto scheduleItemDto);
 
     void delete(UUID id);
+
+    List<ScheduleItemDto> getAllFree();
+
+    List<ScheduleItemDto> getAllBusy();
+
+    List<ScheduleItemDto> getByClientId(UUID clientId);
 }

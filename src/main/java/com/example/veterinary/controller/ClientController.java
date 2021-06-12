@@ -12,6 +12,7 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @RequestMapping("/client")
+@CrossOrigin
 public class ClientController {
     private final ClientService clientService;
 

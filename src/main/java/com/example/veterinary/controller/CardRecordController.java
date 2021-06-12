@@ -14,6 +14,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/record")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@CrossOrigin
 public class CardRecordController {
     private final CardRecordService cardRecordService;
 
@@ -27,6 +28,12 @@ public class CardRecordController {
     @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR', 'MEDICAL_STAFF', 'CLIENT')")
     public List<CardRecordDto> getCardRecords(@RequestParam("id") UUID id){
         return cardRecordService.getCardRecords(id);
+    }
+
+    @GetMapping("/by-doctor-id")
+    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
+    public List<CardRecordDto> getRecordsByDoctorId(@RequestParam("id") UUID doctorId){
+        return cardRecordService.getRecordsByDoctorId(doctorId);
     }
 
     @PostMapping

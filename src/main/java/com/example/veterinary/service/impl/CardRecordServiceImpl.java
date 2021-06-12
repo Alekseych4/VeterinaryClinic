@@ -80,6 +80,15 @@ public class CardRecordServiceImpl implements CardRecordService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<CardRecordDto> getRecordsByDoctorId(UUID doctorId) {
+        Staff doctor = staffRepository.findById(doctorId).orElseThrow(NoSuchRecordException::new);
+
+        return cardRecordRepository.findByStaff(doctor).stream()
+                .map(cardRecord -> conversionService.convert(cardRecord, CardRecordDto.class))
+                .collect(Collectors.toList());
+    }
+
     private Appointment getAppointmentIfAny(PatientCard patientCard, Staff staff, CardRecordDto cardRecordDto){
          return patientCard.getAppointments()
                 .stream()

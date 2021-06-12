@@ -12,6 +12,7 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
 

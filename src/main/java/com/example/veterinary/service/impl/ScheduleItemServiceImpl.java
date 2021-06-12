@@ -2,12 +2,14 @@ package com.example.veterinary.service.impl;
 
 import com.example.veterinary.VeterinaryApplication;
 import com.example.veterinary.domain.dto.schedule.ScheduleItemDto;
-import com.example.veterinary.domain.entity.ScheduleItem;
-import com.example.veterinary.domain.entity.Staff;
+import com.example.veterinary.domain.entity.*;
 import com.example.veterinary.exception.VeterinaryApplicationException;
 import com.example.veterinary.exception.controller.NoSuchRecordException;
+import com.example.veterinary.repository.AppointmentRepository;
+import com.example.veterinary.repository.ClientRepository;
 import com.example.veterinary.repository.ScheduleItemRepository;
 import com.example.veterinary.repository.StaffRepository;
+import com.example.veterinary.service.AppointmentService;
 import com.example.veterinary.service.ScheduleItemService;
 import com.example.veterinary.service.StaffService;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +19,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +30,8 @@ public class ScheduleItemServiceImpl implements ScheduleItemService {
     private final ScheduleItemRepository scheduleItemRepository;
     private final ConversionService conversionService;
     private final StaffRepository staffRepository;
+    private final AppointmentRepository appointmentRepository;
+    private final ClientRepository clientRepository;
 
     @Transactional(readOnly = true)
     @Override
@@ -86,5 +87,43 @@ public class ScheduleItemServiceImpl implements ScheduleItemService {
     @Override
     public void delete(UUID id) {
         scheduleItemRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ScheduleItemDto> getAllFree() {
+        return scheduleItemRepository.findAll()
+                .stream()
+                .filter(scheduleItem -> scheduleItem.getAppointment() == null)
+                .map(item -> conversionService.convert(item, ScheduleItemDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ScheduleItemDto> getAllBusy() {
+        return scheduleItemRepository.findAll()
+                .stream()
+                .filter(scheduleItem -> scheduleItem.getAppointment() != null)
+                .map(item -> conversionService.convert(item, ScheduleItemDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ScheduleItemDto> getByClientId(UUID clientId) {
+        Client client = clientRepository.findById(clientId).orElseThrow(() -> new VeterinaryApplicationException("No such client"));
+        Collection<PatientCard> clientPatientCards = client.getPatientCards();
+
+        List<Appointment> appointments = clientPatientCards.stream()
+                .flatMap(patientCard -> patientCard.getAppointments().stream())
+                .collect(Collectors.toList());
+
+        List<ScheduleItem> scheduleItemList = new ArrayList<>();
+
+        for (Appointment appointment : appointments){
+            scheduleItemList.add(appointment.getScheduleItem());
+        }
+
+        return scheduleItemList.stream()
+                .map(scheduleItem -> conversionService.convert(scheduleItem, ScheduleItemDto.class))
+                .collect(Collectors.toList());
     }
 }

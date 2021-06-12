@@ -12,6 +12,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/card")
+@CrossOrigin
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class PatientCardController {
     private final PatientCardService patientCardService;

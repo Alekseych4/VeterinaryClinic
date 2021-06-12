@@ -58,6 +58,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return AuthResponseDto.builder()
                 .id(user.getId())
                 .token(token)
+                .userRole(user.getUserRole())
                 .build();
     }
 }
